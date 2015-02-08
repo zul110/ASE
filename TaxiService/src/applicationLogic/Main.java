@@ -25,9 +25,9 @@ public class Main {
 		
 		addDestinations();
 		
-		displayTaxisAndVisitedPlaces();
+//		displayTaxisAndVisitedPlaces();
 		
-//		displayMostExpensiveJourneys();
+		displayMostExpensiveJourneys();
 		
 //		displayLeastExpensiveJourneys();
 
