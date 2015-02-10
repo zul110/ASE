@@ -1,6 +1,7 @@
 package applicationLogic;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +21,7 @@ public class FileOps {
 		Path path = Paths.get(fileName);
 		
 		try {
-			lines = Files.readAllLines(path);
+			lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
