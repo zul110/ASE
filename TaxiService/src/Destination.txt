@@ -1,0 +1,10 @@
+Zuerich,Kreis 11;4.5;
+Zuerich,Kreis 3;5.0;
+Zuerich,Wollishofen;3.5;
+Zuerich,Wallisellen;1.5;
+Zuerich,Mattenbach;10.5;
+Geneva,LeJetdEau;6.5;
+Geneva,The Reformation Wall;12;
+Geneva,CERN;2.5;
+Geneva,Bains des Paquis;8.5;
+Geneva,Lake Geneva;9.5;

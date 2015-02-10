@@ -62,6 +62,12 @@ public class Journey implements Comparable<Journey> {
 	@Override
 	public int compareTo(Journey other) {
 //		return taxi.getDriver().compareTo(other.taxi.getDriver());
-		return destination.getDistance() - other.destination.getDistance();
+		if(destination.getDistance() > other.destination.getDistance()) {
+			return 1;
+		} else if(destination.getDistance() < other.destination.getDistance()) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }

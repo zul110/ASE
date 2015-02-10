@@ -1,8 +1,10 @@
 package applicationLogic;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.TreeSet;
 
 import dataClasses.Destination;
@@ -11,7 +13,7 @@ import dataClasses.Taxi;
 
 public class Main {
 	private static TreeSet<Taxi> taxis;
-	private static ArrayList<Destination> destinations;
+	private static List<Destination> destinations;
 	private static ArrayList<Journey> journeys;
 
 	public static void main(String[] args) {
@@ -19,19 +21,23 @@ public class Main {
 		destinations = new ArrayList<Destination>();
 		journeys = new ArrayList<Journey>();
 		
-		addTaxis();
+		DestinationFileOps destinationFile = new DestinationFileOps();
 		
-		addJourneys();
+		destinations = destinationFile.getDestinations();
 		
-		addDestinations();
+		//addTaxis();
+		
+		//addJourneys();
+		
+		//addDestinations();
 		
 //		displayTaxisAndVisitedPlaces();
 		
-		displayMostExpensiveJourneys();
+		//displayMostExpensiveJourneys();
 		
 //		displayLeastExpensiveJourneys();
 
-//		displayDestinations();
+		displayDestinations();
 		
 //		displayJourneys();
 	}
@@ -41,7 +47,13 @@ public class Main {
 
 			@Override
 			public int compare(Journey journey1, Journey journey2) {
-				return journey1.getDestination().getDistance() - journey2.getDestination().getDistance();
+				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+					return 1;
+				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+					return -1;
+				} else {
+					return 0;
+				}
 			}
 			
 		};
@@ -57,7 +69,13 @@ public class Main {
 
 			@Override
 			public int compare(Journey journey1, Journey journey2) {
-				return journey2.getDestination().getDistance() - journey1.getDestination().getDistance();
+				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+					return 1;
+				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+					return -1;
+				} else {
+					return 0;
+				}
 			}
 			
 		};

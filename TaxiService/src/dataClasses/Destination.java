@@ -2,9 +2,9 @@ package dataClasses;
 
 public class Destination implements Comparable<Destination> {
 	private String name;
-	private int distance;
+	private double distance;
 	
-	public Destination(String name, int distance) {
+	public Destination(String name, double distance) {
 		super();
 		
 		this.name = name;
@@ -19,11 +19,11 @@ public class Destination implements Comparable<Destination> {
 		this.name = name;
 	}
 	
-	public int getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 	
-	public void setDistance(int distance) {
+	public void setDistance(double distance) {
 		this.distance = distance;
 	}
 	
