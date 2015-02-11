@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.TreeSet;
 
 import dataClasses.Destination;
@@ -26,12 +25,18 @@ public class JourneyFileOps extends FileOps {
 		taxis = getTaxis();
 		destinations = getDestinations();
 		journeys = new ArrayList<Journey>();
+		
+		getJourneys();
 	}
 	
-	public List<Journey> getJourneys() {
+	public void getJourneys() {
 		List<String> lines = readLinesFromFile();
 		
-		return year == 2015 ? get2015Journeys(lines) : get2014Journeys(lines);
+		if(year == 2015) {
+			get2015Journeys(lines);
+		} else {
+			get2014Journeys(lines);
+		}
 	}
 	
 	private List<Journey> get2015Journeys(List<String> lines) {
