@@ -1,0 +1,6 @@
+Zuerich,Kreis 11;
+Zuerich,Kreis 3;
+Zuerich,Wollishofen;
+Geneva,LeJetdEau;
+Geneva,The Reformation Wall;
+Geneva,Lake Geneva;
