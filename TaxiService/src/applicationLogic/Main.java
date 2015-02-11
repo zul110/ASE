@@ -14,86 +14,35 @@ import dataClasses.Taxi;
 public class Main {
 	private static Set<Taxi> taxis;
 	private static List<Destination> destinations;
-	private static ArrayList<Journey> journeys;
+	private static List<Journey> journeys2014;
+	private static List<Journey> journeys2015;
 
 	public static void main(String[] args) {
 		taxis = new TreeSet<Taxi>();
 		destinations = new ArrayList<Destination>();
-		journeys = new ArrayList<Journey>();
+		journeys2015 = new ArrayList<Journey>();
+		journeys2014 = new ArrayList<Journey>();
 		
-		DestinationFileOps destinationFile = new DestinationFileOps("Destinations.txt");
+		DestinationFileOps destinationFile = new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME);
 		destinations = destinationFile.getDestinations();
-		displayDestinations();
 		
-		TaxiFileOps taxiFile = new TaxiFileOps("Taxis.txt");
+		TaxiFileOps taxiFile = new TaxiFileOps(Helpers.TAXIS_FILE_NAME);
 		taxis = taxiFile.getSortedTaxisAsc();
-		displayTaxisAndVisitedPlaces();
 		
-		//displayMostExpensiveJourneys();
+		JourneyFileOps journeyFile2014 = new JourneyFileOps(Helpers.DESTINATIONS_2014_FILE_NAME);
+		journeys2014 = journeyFile2014.getJourneys();
 		
-//		displayLeastExpensiveJourneys();
+		JourneyFileOps journeyFile2015 = new JourneyFileOps(Helpers.JOURNEYS_2015_FILE_NAME);
+		journeys2015 = journeyFile2015.getJourneys();
 		
-//		displayJourneys();
-	}
-
-	private static void displayLeastExpensiveJourneys() {
-		Comparator<Journey> comparator = new Comparator<Journey>() {
-
-			@Override
-			public int compare(Journey journey1, Journey journey2) {
-				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
-					return 1;
-				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
-					return -1;
-				} else {
-					return 0;
-				}
-			}
-			
-		};
 		
-		Collections.sort(journeys, comparator);
+		TaxiFileOps.writeDriversAndDestinationsToFile(journeyFile2015.getDriversAndVisitedPlaces(), "DriversAndDestinations");
 		
-		displayJourneys();
 		
-	}
-
-	private static void displayMostExpensiveJourneys() {
-		Comparator<Journey> comparator = new Comparator<Journey>() {
-
-			@Override
-			public int compare(Journey journey1, Journey journey2) {
-				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
-					return 1;
-				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
-					return -1;
-				} else {
-					return 0;
-				}
-			}
-			
-		};
+		JourneyFileOps.writeTopFiveAndCheapestJourneysToFile(JourneyFileOps.getFirstFiveJourneys(
+				journeyFile2015.getMostExpensiveJourneys(), "Top 5 Journeys"),
+				JourneyFileOps.getFirstFiveJourneys(journeyFile2015.getLeastExpensiveJourneys(), "Cheapest 5 Journeys"));
 		
-		Collections.sort(journeys, comparator);
-		
-		displayJourneys();
-	}
-
-	private static void displayJourneys() {
-		for(Journey journey : journeys) {
-			Helpers.println(journey.toString());
-		}
-	}
-
-	private static void displayDestinations() {
-		for(Destination destination : destinations) {
-			Helpers.println(destination.toString());
-		}
-	}
-
-	private static void displayTaxisAndVisitedPlaces() {
-		for(Taxi taxi : taxis) {
-			Helpers.println(taxi.toString());
-		}
+		JourneyFileOps.writeUniqueAndCommonDestinations(journeyFile2015.getUniqueJourneySet(), journeyFile2014.getUniqueJourneySet());
 	}
 }

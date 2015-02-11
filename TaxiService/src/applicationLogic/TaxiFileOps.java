@@ -39,4 +39,14 @@ public class TaxiFileOps extends FileOps {
 		
 		return taxis;
 	}
+	
+	public static void writeDriversAndDestinationsToFile(Set<Taxi> taxis, String fileName) {
+		String s = "";
+		
+		for(Taxi taxi : taxis) {
+			s += taxi.toString();
+		}
+		
+		writeToFile(fileName, s);
+	}
 }

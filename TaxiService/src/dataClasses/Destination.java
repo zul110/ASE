@@ -1,6 +1,6 @@
 package dataClasses;
 
-public class Destination {
+public class Destination implements Comparable<Destination> {
 	private String name;
 	private double distance;
 	
@@ -34,5 +34,10 @@ public class Destination {
 		s += "Distance: " + distance + "\n";
 		
 		return s;
+	}
+
+	@Override
+	public int compareTo(Destination other) {
+		return name.compareTo(other.getName());
 	}
 }

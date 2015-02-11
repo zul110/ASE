@@ -50,11 +50,13 @@ public class Taxi implements Comparable<Taxi> {
 		String s = "";
 		s += "Name: " + driver + "\n";
 		s += "Registration number: " + registrationNumber + "\n";
-//		s += "Number of passengers: " + numberOfPassengers + "\n";
-		for(Destination destination : destinations) {
-			s += "Destination:" + destination.getName() + "\n";
-			s += "Distance:" + destination.getDistance() + "\n\n";
+		if(destinations != null && !destinations.isEmpty()) {
+			for(Destination destination : destinations) {
+				s += "Destination:" + destination.getName() + "\n";
+				s += "Distance:" + destination.getDistance() + "\n";
+			}
 		}
+		s += "\n";
 		
 		return s;
 	}
