@@ -1,6 +1,7 @@
 package applicationLogic;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,7 @@ public class FileOps {
 	}
 	
 	public List<String> readLinesFromFile() {
-		Path path = Paths.get(fileName);
+		Path path = Paths.get(getPath(fileName));
 		
 		try {
 			lines = Files.readAllLines(path, StandardCharsets.UTF_8);
@@ -27,5 +28,10 @@ public class FileOps {
 		}
 		
 		return lines;
+	}
+	
+	public String getPath(String fileName) {
+		URL url = Main.class.getClassLoader().getResource(fileName);
+		return url.getPath().substring(1, url.getPath().length());
 	}
 }

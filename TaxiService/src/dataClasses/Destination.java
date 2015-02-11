@@ -1,6 +1,6 @@
 package dataClasses;
 
-public class Destination implements Comparable<Destination> {
+public class Destination {
 	private String name;
 	private double distance;
 	
@@ -25,11 +25,6 @@ public class Destination implements Comparable<Destination> {
 	
 	public void setDistance(double distance) {
 		this.distance = distance;
-	}
-	
-	@Override
-	public int compareTo(Destination other) {
-		return name.compareTo(other.name);
 	}
 	
 	@Override
