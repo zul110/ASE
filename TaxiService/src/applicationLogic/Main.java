@@ -1,11 +1,14 @@
 package applicationLogic;
 
 public class Main {
+	private static JourneyFileOps journeyFile2014;
+	private static JourneyFileOps journeyFile2015;
+	
 	public static void main(String[] args) {
 		
-		JourneyFileOps journeyFile2014 = new JourneyFileOps(Helpers.DESTINATIONS_2014_FILE_NAME);
+		journeyFile2014 = new JourneyFileOps(Helpers.DESTINATIONS_2014_FILE_NAME);
 		
-		JourneyFileOps journeyFile2015 = new JourneyFileOps(Helpers.JOURNEYS_2015_FILE_NAME);
+		journeyFile2015 = new JourneyFileOps(Helpers.JOURNEYS_2015_FILE_NAME);
 		
 		
 		TaxiFileOps.writeDriversAndDestinationsToFile(journeyFile2015.getDriversAndVisitedPlaces(), "DriversAndDestinations");
