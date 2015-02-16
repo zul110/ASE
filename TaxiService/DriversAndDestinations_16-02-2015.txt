@@ -1,0 +1,78 @@
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-GE-237890
+-----------------------------------------------------------------
+Driver						: Albert,James
+Taxi-Registration number	: SWISS-GE-237890
+Destination					: Geneva,LeJetdEau
+Distance 					: 6.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-ZH-678267
+-----------------------------------------------------------------
+Driver						: Antony,Mathew
+Taxi-Registration number	: SWISS-ZH-678267
+Destination					: Zuerich,Wallisellen
+Distance 					: 1.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-GE-245670
+-----------------------------------------------------------------
+Driver						: Boby,John
+Taxi-Registration number	: SWISS-GE-245670
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-GE-274788
+-----------------------------------------------------------------
+Driver						: Charles,George
+Taxi-Registration number	: SWISS-GE-274788
+Destination					: Geneva,CERN
+Distance 					: 2.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-GE-212345
+-----------------------------------------------------------------
+Driver						: Donald,James
+Taxi-Registration number	: SWISS-GE-212345
+Destination					: Geneva,Bains des Paquis
+Distance 					: 8.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-ZH-390123
+-----------------------------------------------------------------
+Driver						: Fiffy,Paul
+Taxi-Registration number	: SWISS-ZH-390123
+Destination					: Zuerich,Kreis 3
+Distance 					: 5.0
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-ZH-456321
+-----------------------------------------------------------------
+Driver						: George,John
+Taxi-Registration number	: SWISS-ZH-456321
+Destination					: Zuerich,Wollishofen
+Distance 					: 3.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-GE-252385
+-----------------------------------------------------------------
+Driver						: Mathew,Thomas
+Taxi-Registration number	: SWISS-GE-252385
+Destination					: Geneva,Lake Geneva
+Distance 					: 9.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-ZH-668667
+-----------------------------------------------------------------
+Driver						: Paul,Mathew
+Taxi-Registration number	: SWISS-ZH-668667
+Destination					: Zuerich,Mattenbach
+Distance 					: 10.5
+
+-----------------------------------------------------------------
+Journeys details  of  Taxi number SWISS-ZH-334765
+-----------------------------------------------------------------
+Driver						: William,John
+Taxi-Registration number	: SWISS-ZH-334765
+Destination					: Zuerich,Kreis 11
+Distance 					: 4.5
+
