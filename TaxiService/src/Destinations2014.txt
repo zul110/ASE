@@ -4,3 +4,4 @@ Zuerich,Wollishofen;
 Geneva,LeJetdEau;
 Geneva,The Reformation Wall;
 Geneva,Lake Geneva;
+Geneva,CERN;

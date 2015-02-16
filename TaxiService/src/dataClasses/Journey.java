@@ -50,16 +50,21 @@ public class Journey implements Comparable<Journey> {
 	@Override
 	public String toString() {
 		String s = "";
-		s += "Year: " + year + "\n";
-		if(taxi != null) {
-			s += "Taxi: " + taxi.getRegistrationNumber() + "\n";
-			s += "Driver: " + taxi.getDriver() + "\n";
+		/*String s1 = "";
+		s1 += "----------------------------------------------------------------------------------------------------------" + "\n";
+		s1+= "\nTaxi       		    Driver     		    Destination   				Distance 	Number of Passengers\n";
+		s1 += "----------------------------------------------------------------------------------------------------------" + "\n";*/
+		if(taxi != null) 
+		{
+			
+			s += String.format("%-20s", taxi.getRegistrationNumber());
+			s += String.format("%-20s", taxi.getDriver());
 		}
-		s += "Destination: " + destination.getName() + "\n";
-		s += "Distance: " + destination.getDistance() + "\n";
-		s += "Passengers: " + numberOfPassengers + "\n";
+		s += String.format("%-30s", destination.getName());
+		s += String.format("%-15s", destination.getDistance());
+		s += String.format("%-15s",  numberOfPassengers);
+		s += String.format("%-15s",  year);
 		s += "\n";
-		
 		return s;
 	}
 

@@ -1,14 +1,10 @@
 SWISS-ZH-334765;Zuerich,Kreis 11;4;
-SWISS-ZH-334765;Zuerich,Kreis 11;4;
 SWISS-ZH-390123;Zuerich,Kreis 3;3;
 SWISS-ZH-456321;Zuerich,Wollishofen;4;
 SWISS-ZH-678267;Zuerich,Wallisellen;2;
 SWISS-ZH-668667;Zuerich,Mattenbach;5;
-SWISS-ZH-668667;Zuerich,Mattenbach a;5;
 SWISS-ZH-668667;Zuerich,Mattenbach;5;
-SWISS-ZH-668667;Zuerich,Mattenbach b;5;
 SWISS-GE-237890;Geneva,LeJetdEau;4;
-SWISS-GE-245670;Geneva,The Reformation Wall;5;
 SWISS-GE-274788;Geneva,CERN;2;
 SWISS-GE-212345;Geneva,Bains des Paquis;3;
 SWISS-GE-252385;Geneva,Lake Geneva;4;

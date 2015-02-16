@@ -10,14 +10,16 @@ import dataClasses.Destination;
 import dataClasses.Journey;
 import dataClasses.Taxi;
 
-public class JourneyFileOps extends FileOps {
+public class JourneyFileOps extends FileOps 
+{
 	private List<Taxi> taxis;
 	private List<Destination> destinations;
 	private List<Journey> journeys;
 	
 	private int year;
 	
-	public JourneyFileOps(String fileName) {
+	public JourneyFileOps(String fileName) 
+	{
 		super(fileName);
 		
 		this.year = fileName == Helpers.JOURNEYS_2015_FILE_NAME ? 2015 : 2014;
@@ -29,25 +31,43 @@ public class JourneyFileOps extends FileOps {
 		getJourneys();
 	}
 	
-	public void getJourneys() {
-		List<String> lines = readLinesFromFile();
+	/*Compare and return Journeys*/
+	public void getJourneys() 
+	{
+		try
+		{
+			List<String> lines = readLinesFromFile();
 		
-		if(year == 2015) {
-			get2015Journeys(lines);
-		} else {
-			get2014Journeys(lines);
+			if(year == 2015) 
+			{
+				get2015Journeys(lines);
+			} 
+			else 
+			{
+				get2014Journeys(lines);
+			}
 		}
+			catch(Exception exc)
+			{
+				Helpers.println(exc.getMessage());
+			}
 	}
 	
-	public List<Journey> getMostExpensiveJourneys() {
+	/*Return most expensive journeys*/
+	public List<Journey> getMostExpensiveJourneys() 
+	{
 		List<Journey> journeys = this.journeys;
-		Comparator<Journey> comparator = new Comparator<Journey>() {
+		Comparator<Journey> comparator = new Comparator<Journey>() 
+				{
 	
 			@Override
-			public int compare(Journey journey1, Journey journey2) {
-				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+			public int compare(Journey journey1, Journey journey2) 
+			{
+				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
+				{
 					return 1;
-				} else if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) {
+				} else if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
+				{
 					return -1;
 				} else {
 					return 0;
@@ -60,16 +80,21 @@ public class JourneyFileOps extends FileOps {
 		
 		return journeys;
 	}
-
-	public List<Journey> getLeastExpensiveJourneys() {
+	/*Return least expensive journeys*/
+	public List<Journey> getLeastExpensiveJourneys() 
+	{
 		List<Journey> journeys = this.journeys;
-		Comparator<Journey> comparator = new Comparator<Journey>() {
+		Comparator<Journey> comparator = new Comparator<Journey>() 
+				{
 	
 			@Override
-			public int compare(Journey journey1, Journey journey2) {
-				if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) {
+			public int compare(Journey journey1, Journey journey2) 
+			{
+				if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
+				{
 					return 1;
-				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) {
+				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
+				{
 					return -1;
 				} else {
 					return 0;
@@ -82,13 +107,16 @@ public class JourneyFileOps extends FileOps {
 		
 		return journeys;
 	}
-
-	public TreeSet<Taxi> getDriversAndVisitedPlaces() {
+	/*Return unique records of drivers' names, and the unique destinations they have visited*/
+	public TreeSet<Taxi> getDriversAndVisitedPlaces() 
+	{
 		TreeSet<Taxi> taxis = getUniqueTaxiSet();
 		
 		for(Taxi taxi : taxis) {
-			for(Journey journey : journeys) {
-				if(taxi.getDriver().equals(journey.getTaxi().getDriver())) {
+			for(Journey journey : journeys) 
+			{
+				if(taxi.getDriver().equals(journey.getTaxi().getDriver())) 
+				{
 					taxi.setDestinations(journey.getDestination());
 				}
 			}
@@ -96,23 +124,29 @@ public class JourneyFileOps extends FileOps {
 		
 		return taxis;
 	}
-
-	public TreeSet<Journey> getUniqueJourneySet() {
+	
+	/*Return unique set of journeys*/
+	public TreeSet<Journey> getUniqueJourneySet() 
+	{
 		TreeSet<Journey> journeys = new TreeSet<Journey>();
 		
-		for(Journey journey : this.journeys) {
+		for(Journey journey : this.journeys) 
+		{
 			journeys.add(journey);
 		}
 		
 		return journeys;
 	}
 	
-	public static String getFirstFiveJourneys(List<Journey> journeys, String title) {
+	/*Return first 5 journeys*/
+	public static String getFirstFiveJourneys(List<Journey> journeys, String title) 
+	{
 		String s = "";
 		s += title;
 		s += ":\n";
 		
-		for(Journey journey : journeys.subList(0, 5)) {
+		for(Journey journey : journeys.subList(0, 5)) 
+		{
 			s += journey.toString();
 		}
 		
@@ -120,31 +154,51 @@ public class JourneyFileOps extends FileOps {
 		
 		return s;
 	}
-
-	public static void writeTopFiveAndCheapestJourneysToFile(String top5Journeys, String cheapest5Journeys) {
-		String s = "";
-		s += top5Journeys;
-		s += cheapest5Journeys;
+	
+	/*Return top  5 and cheapest 5 journeys*/
+	public static void writeTopFiveAndCheapestJourneysToFile(String top5Journeys, String cheapest5Journeys) 
+	{
+		try
+		{
+			String s = "";
+			s += top5Journeys;
+			s += cheapest5Journeys;
 		
-		writeToFile("TopFiveAndCheapestFiveJourneys", s);
+			writeToFile("TopFiveAndCheapestFiveJourneys", s);
+		}
+		catch(Exception exc)
+		{
+			Helpers.println(exc.getMessage());
+		}
 	}
 	
-	public static void writeUniqueAndCommonDestinations(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) {
-		TreeSet<Journey> uniqueJourneys1 = getUniqueJourneys(journeys1, journeys2);
-		TreeSet<Journey> uniqueJourneys2 = getUniqueJourneys(journeys2, journeys1);
-		TreeSet<Journey> commonJourneys = getCommonJourneys(journeys1, journeys2);
+	/*Return unique and common destinations*/
+	public static void writeUniqueAndCommonDestinations(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
+	{
+		try
+		{
+			TreeSet<Journey> uniqueJourneys1 = getUniqueJourneys(journeys1, journeys2);
+			TreeSet<Journey> uniqueJourneys2 = getUniqueJourneys(journeys2, journeys1);
+			TreeSet<Journey> commonJourneys = getCommonJourneys(journeys1, journeys2);
 		
-		String s = "";
-		s += getUniqueAndCommonDestinations(
+			String s = "";
+			s += getUniqueAndCommonDestinations(
 				uniqueJourneys1, uniqueJourneys1.size(),
 				uniqueJourneys2, uniqueJourneys2.size(),
 				commonJourneys, commonJourneys.size()
 				);
 		
-		writeToFile("UniqueAndCommonJourneys", s);
+			writeToFile("UniqueAndCommonJourneys", s);
+		}
+		catch(Exception exc)
+		{
+			Helpers.println(exc.getMessage());
+		}
 	}
-
-	private List<Journey> get2015Journeys(List<String> lines) {
+	
+	/*Display 2015 Journeys*/
+	private List<Journey> get2015Journeys(List<String> lines) 
+	{
 		for(String line : lines) {
 			String[] words = line.split(";");
 			
@@ -158,9 +212,12 @@ public class JourneyFileOps extends FileOps {
 		
 		return journeys;
 	}
-
-	private List<Journey> get2014Journeys(List<String> lines) {
-		for(String line : lines) {
+	
+	/*Display 2014 Journeys*/
+	private List<Journey> get2014Journeys(List<String> lines) 
+	{
+		for(String line : lines) 
+		{
 			String[] words = line.split(";");
 			
 			Destination destination = new Destination(words[0], getDistance(words[0]));
@@ -172,42 +229,57 @@ public class JourneyFileOps extends FileOps {
 		
 		return journeys;
 	}
-
-	private List<Taxi> getTaxis() {
+	
+	/*Display Taxis*/
+	private List<Taxi> getTaxis() 
+	{
 		return new TaxiFileOps(Helpers.TAXIS_FILE_NAME).getTaxis();
 	}
-
-	private TreeSet<Taxi> getUniqueTaxiSet() {
+	
+	/*Display unique set of taxis*/
+	private TreeSet<Taxi> getUniqueTaxiSet() 
+	{
 		TreeSet<Taxi> taxis = new TreeSet<Taxi>();
 		
-		for(Taxi taxi : this.taxis) {
+		for(Taxi taxi : this.taxis) 
+		{
 			taxis.add(taxi);
 		}
 		
 		return taxis;
 	}
-
-	private List<Destination> getDestinations() {
+	
+	/*Display destinations*/
+	private List<Destination> getDestinations() 
+	{
 		return new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME).getDestinations();
 	}
-
-	private double getDistance(String name) {
+	
+	/*Display distance*/
+	private double getDistance(String name) 
+	{
 		double distance = -1;
 		
-		for(Destination destination : destinations) {
-			if(destination.getName().equals(name)) {
+		for(Destination destination : destinations) 
+		{
+			if(destination.getName().equals(name)) 
+			{
 				distance = destination.getDistance();
 			}
 		}
 		
 		return distance;
 	}
-
-	private String getDriverName(String regNumber) {
+	
+	/*Display driver details*/
+	private String getDriverName(String regNumber) 
+	{
 		String name = "NOT FOUND";
 		
-		for(Taxi taxi : taxis) {
-			if(taxi.getRegistrationNumber().equals(regNumber)) {
+		for(Taxi taxi : taxis) 
+		{
+			if(taxi.getRegistrationNumber().equals(regNumber)) 
+			{
 				name = taxi.getDriver();
 			}
 		}
@@ -215,16 +287,22 @@ public class JourneyFileOps extends FileOps {
 		return name;
 	}
 	
-	private static TreeSet<Journey> getCommonJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) {
+	/*Display common Journeys*/
+	private static TreeSet<Journey> getCommonJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
+	{
 		TreeSet<Journey> commonJourneys = journeys1;
 		commonJourneys.retainAll(journeys2);
 		
 		return commonJourneys;
 	}
-
-	private static TreeSet<Journey> getUniqueJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) {
+	
+	/*Display unique Journeys*/
+	private static TreeSet<Journey> getUniqueJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
+	
+	{
 		TreeSet<Journey> journeys1Only = new TreeSet<Journey>();
-		for(Journey journey : journeys1) {
+		for(Journey journey : journeys1) 
+		{
 			journeys1Only.add(journey);
 		}
 		
@@ -233,25 +311,36 @@ public class JourneyFileOps extends FileOps {
 		return journeys1Only;
 	}
 	
+	/*Display unique  and common Destinations*/
 	private static String getUniqueAndCommonDestinations(
 			TreeSet<Journey> uniqueJourneys1, int uniqueJourney1Count,
 			TreeSet<Journey> uniqueJourneys2, int uniqueJourney2Count,
-			TreeSet<Journey> commonJourneys, int commonJourneyCount) {
+			TreeSet<Journey> commonJourneys, int commonJourneyCount) 
+	{
 		String s = "";
+		s += "---------------------------------------------------" + "\n";
 		s += uniqueJourney1Count + " NEW PLACES IN 2015\n";
-		for(Journey journey : uniqueJourneys1) {
+		s += "---------------------------------------------------" + "\n";
+		for(Journey journey : uniqueJourneys1) 
+		{
 			s += journey.getDestination().getName() + "\n";
 		}
 		s += "\n";
 		
+		s += "---------------------------------------------------" + "\n";
 		s += uniqueJourney2Count + " PLACES VISITED IN 2014 ONLY\n";
-		for(Journey journey : uniqueJourneys2) {
+		s += "---------------------------------------------------" + "\n";
+		for(Journey journey : uniqueJourneys2) 
+		{
 			s += journey.getDestination().getName() + "\n";
 		}
 		s += "\n";
 		
+		s += "---------------------------------------------------" + "\n";
 		s += commonJourneyCount + " PLACES VISITED IN BOTH 2014 AND 2015\n";
-		for(Journey journey : commonJourneys) {
+		s += "---------------------------------------------------" + "\n";
+		for(Journey journey : commonJourneys) 
+		{
 			s += journey.getDestination().getName() + "\n";
 		}
 		s += "\n";

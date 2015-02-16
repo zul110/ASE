@@ -48,16 +48,20 @@ public class Taxi implements Comparable<Taxi> {
 	@Override
 	public String toString() {
 		String s = "";
-		s += "Name: " + driver + "\n";
-		s += "Registration number: " + registrationNumber + "\n";
+		s += "-----------------------------------------------------------------" + "\n";
+		s += "Journeys details  of  Taxi number "  + registrationNumber +""            + "\n";
+		s += "-----------------------------------------------------------------" + "\n";
+		s += "Driver						: " + driver + "\n";
+		s += "Taxi-Registration number	: " + registrationNumber + "\n";
 		if(destinations != null && !destinations.isEmpty()) {
 			for(Destination destination : destinations) {
-				s += "Destination:" + destination.getName() + "\n";
-				s += "Distance:" + destination.getDistance() + "\n";
+				s += "Destination					: " + destination.getName() + "\n";
+				s += "Distance 					: " + destination.getDistance() + "\n";
 			}
 		}
 		s += "\n";
 		
 		return s;
 	}
+	
 }
