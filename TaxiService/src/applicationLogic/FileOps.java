@@ -74,7 +74,11 @@ public class FileOps {
 		catch (IOException ex) 
 		{
 		  Helpers.println(ex.getMessage());
-		} 
+		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 		finally 
 		{
 		   

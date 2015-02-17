@@ -170,6 +170,10 @@ public class JourneyFileOps extends FileOps
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	
 	/*Return unique and common destinations*/
@@ -193,6 +197,10 @@ public class JourneyFileOps extends FileOps
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
+		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
 		}
 	}
 	

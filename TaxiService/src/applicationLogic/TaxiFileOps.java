@@ -69,10 +69,14 @@ public class TaxiFileOps extends FileOps
 			}
 		
 			writeToFile(fileName, s);
-		}
+		}	
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}	
 	}
 }

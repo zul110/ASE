@@ -2,6 +2,8 @@ package dataClasses;
 
 import java.util.TreeSet;
 
+import applicationLogic.Helpers;
+
 public class Taxi implements Comparable<Taxi> {
 	private String driver;
 	private String registrationNumber;
@@ -46,21 +48,30 @@ public class Taxi implements Comparable<Taxi> {
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		String s = "";
-		s += "-----------------------------------------------------------------" + "\n";
-		s += "Journeys details  of  Taxi number "  + registrationNumber +""            + "\n";
-		s += "-----------------------------------------------------------------" + "\n";
-		s += "Driver						: " + driver + "\n";
-		s += "Taxi-Registration number	: " + registrationNumber + "\n";
-		if(destinations != null && !destinations.isEmpty()) {
-			for(Destination destination : destinations) {
-				s += "Destination					: " + destination.getName() + "\n";
-				s += "Distance 					: " + destination.getDistance() + "\n";
+		try
+		{
+			s += "-----------------------------------------------------------------" + "\n";
+			s += "Journeys details  of  Taxi number "  + registrationNumber +""            + "\n";
+			s += "-----------------------------------------------------------------" + "\n";
+			s += "Driver						: " + driver + "\n";
+			s += "Taxi-Registration number	: " + registrationNumber + "\n";
+			if(destinations != null && !destinations.isEmpty()) 
+			{
+				for(Destination destination : destinations) {
+					s += "Destination					: " + destination.getName() + "\n";
+					s += "Distance 					: " + destination.getDistance() + "\n";
+				}
 			}
+			s += "\n";
 		}
-		s += "\n";
-		
+		catch (NullPointerException e) 
+		{
+			Helpers.println(e.getMessage());
+			e.printStackTrace();
+		}
 		return s;
 	}
 	

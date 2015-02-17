@@ -35,6 +35,10 @@ public class Helpers
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	
 	/*Display destinations*/
@@ -51,6 +55,10 @@ public class Helpers
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	/*Display unique records of drivers' names, and the unique destinations they have visited*/
 	public static void displayDriversAndVisitedPlaces(Set<Taxi> taxis) 
@@ -65,7 +73,11 @@ public class Helpers
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
-		}	
+		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	
 	/*Display least expensive journeys*/
@@ -79,6 +91,10 @@ public class Helpers
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	
 	/*Display most expensive journeys*/
@@ -91,6 +107,10 @@ public class Helpers
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
+		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
 		}
 	}
 	/*Display journeys*/
@@ -107,6 +127,10 @@ public class Helpers
 		{
 			Helpers.println(exc.getMessage());
 		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
+		}
 	}
 	
 	/*Display unique journeys*/
@@ -122,6 +146,10 @@ public class Helpers
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
+		}
+		catch(Throwable e) 
+		{ 
+			Helpers.println(e.getMessage());
 		}
 		
 	}
