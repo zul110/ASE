@@ -27,7 +27,8 @@ public class JourneyTest{
 		}
 		
 		// calculate the price based on miles in
-		totalFare+= dropOffCharge + (distance*pricePerFifthMile);
+		totalFare+= dropOffCharge ;
+		totalFare += (distance*pricePerFifthMile);
 		
 	
 		assertEquals( 13.75, totalFare, 0.1);
