@@ -75,10 +75,10 @@ public class JourneyFileOps extends FileOps
 				}
 				*/
 				
-				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
+				if(journey2.calculateFare() > journey1.calculateFare()) 
 				{
 					return 1;
-				} else if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
+				} else if(journey2.calculateFare() < journey1.calculateFare()) 
 				{
 					return -1;
 				} else {
@@ -99,6 +99,7 @@ public class JourneyFileOps extends FileOps
 		Comparator<Journey> comparator = new Comparator<Journey>() 
 				{
 	
+			/*
 			@Override
 			public int compare(Journey journey1, Journey journey2) 
 			{
@@ -112,7 +113,20 @@ public class JourneyFileOps extends FileOps
 					return 0;
 				}
 			}
-			
+			*/
+			@Override
+			public int compare(Journey journey1, Journey journey2) 
+			{
+				if(journey2.calculateFare() < journey1.calculateFare()) 
+				{
+					return 1;
+				} else if(journey2.calculateFare() > journey1.calculateFare()) 
+				{
+					return -1;
+				} else {
+					return 0;
+				}
+			}
 		};
 		
 		Collections.sort(journeys, comparator);

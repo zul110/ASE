@@ -90,24 +90,20 @@ public class Journey implements Comparable<Journey> {
 		}
 	}
 
-
-	public double calculatefare()
+	public double calculateFare()
 	{
 	double totalFare =0.0, pricePerFifthMile=0.50, dropOffCharge=2.50, overTwoPassengerCharge=2.00;
 	//double perLuggagePiece = 1.00;
 	double distance= destination.getDistance();
 
-	if (numberOfPassengers>2) {
-
+	if (numberOfPassengers>2) 
+	{
 		totalFare = overTwoPassengerCharge*(numberOfPassengers-2);
 	}
 	
 	// calculate the price based on miles in
-
 	totalFare+= dropOffCharge + (distance*pricePerFifthMile);
-
-	return totalFare;
-	
+	return totalFare;	
 	}
 
 }
