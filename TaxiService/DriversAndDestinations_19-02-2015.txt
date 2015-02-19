@@ -19,6 +19,8 @@ Journeys details  of  Taxi number SWISS-GE-245670
 -----------------------------------------------------------------
 Driver						: Boby,John
 Taxi-Registration number	: SWISS-GE-245670
+Destination					: Geneva,Lake Geneva
+Distance 					: 9.5
 
 -----------------------------------------------------------------
 Journeys details  of  Taxi number SWISS-GE-274788

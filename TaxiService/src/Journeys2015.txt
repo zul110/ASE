@@ -8,3 +8,4 @@ SWISS-GE-237890;Geneva,LeJetdEau;4;
 SWISS-GE-274788;Geneva,CERN;2;
 SWISS-GE-212345;Geneva,Bains des Paquis;3;
 SWISS-GE-252385;Geneva,Lake Geneva;4;
+SWISS-GE-245670;Geneva,Lake Geneva;4;

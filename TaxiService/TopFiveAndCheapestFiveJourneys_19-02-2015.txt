@@ -6,8 +6,8 @@ Taxi        	  Driver     		  Destination   	     Distance Passengers Year
 SWISS-ZH-668667   Paul,Mathew         Zuerich,Mattenbach       10.5      5       2015 
 SWISS-ZH-668667   Paul,Mathew         Zuerich,Mattenbach       10.5      5       2015 
 SWISS-GE-252385   Mathew,Thomas       Geneva,Lake Geneva       9.5       4       2015 
+SWISS-GE-245670   Boby,John           Geneva,Lake Geneva       9.5       4       2015 
 SWISS-GE-212345   Donald,James        Geneva,Bains des Paquis  8.5       3       2015 
-SWISS-GE-237890   Albert,James        Geneva,LeJetdEau         6.5       4       2015 
 
 ------------------------------------------------------------------------------------
 Cheapest 5 Journeys

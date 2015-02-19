@@ -63,6 +63,18 @@ public class JourneyFileOps extends FileOps
 			@Override
 			public int compare(Journey journey1, Journey journey2) 
 			{
+				/*
+				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
+				{
+					return 1;
+				} else if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
+				{
+					return -1;
+				} else {
+					return 0;
+				}
+				*/
+				
 				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
 				{
 					return 1;
