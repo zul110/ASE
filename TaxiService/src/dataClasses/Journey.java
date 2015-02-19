@@ -106,4 +106,5 @@ public class Journey implements Comparable<Journey> {
 	return totalFare;	
 	}
 
+	
 }

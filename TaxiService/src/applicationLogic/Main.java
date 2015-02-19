@@ -21,7 +21,7 @@ public class Main {
 			String s2 = "";
 			s2 += "------------------------------------------------------------------------------------" + "\n";
 			s1 += "------------------------------------------------------------------------------------" + "\n";
-			s1+= "\nTaxi        	  Driver     		  Destination   	     Distance Passengers Year "+"\n";
+			s1+= "\nTaxi        	  Driver     		  Destination   	     Distance Passengers Cost Year "+"\n";
 			s1 += "------------------------------------------------------------------------------------- ";
 			JourneyFileOps.writeTopFiveAndCheapestJourneysToFile(
 					
