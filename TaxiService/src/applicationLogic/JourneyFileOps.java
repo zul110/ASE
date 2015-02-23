@@ -34,51 +34,32 @@ public class JourneyFileOps extends FileOps
 	/*Compare and return Journeys*/
 	public void getJourneys() 
 	{
-		try
-		{
+		try {
 			List<String> lines = readLinesFromFile();
 		
-			if(year == 2015) 
-			{
+			if(year == 2015) {
 				get2015Journeys(lines);
-			} 
-			else 
-			{
+			} else {
 				get2014Journeys(lines);
 			}
+		} catch(Exception ex) {
+			Helpers.println("An unknown exception was thrown. More info:");
+			Helpers.println(ex.getMessage());
 		}
-			catch(Exception exc)
-			{
-				Helpers.println(exc.getMessage());
-			}
 	}
 	
 	/*Return most expensive journeys*/
 	public List<Journey> getMostExpensiveJourneys() 
 	{
 		List<Journey> journeys = this.journeys;
-		Comparator<Journey> comparator = new Comparator<Journey>() 
-				{
-	
+		Comparator<Journey> comparator = new Comparator<Journey>() {
 			@Override
 			public int compare(Journey journey1, Journey journey2) 
 			{
-				/*
-				if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
+				if(journey2.getCost() > journey1.getCost()) 
 				{
 					return 1;
-				} else if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
-				{
-					return -1;
-				} else {
-					return 0;
-				}
-				*/
-				
-				if(journey2.calculateFare() > journey1.calculateFare()) 
-				{
-					return 1;
-				} else if(journey2.calculateFare() < journey1.calculateFare()) 
+				} else if(journey2.getCost() < journey1.getCost()) 
 				{
 					return -1;
 				} else {
@@ -92,35 +73,19 @@ public class JourneyFileOps extends FileOps
 		
 		return journeys;
 	}
+	
 	/*Return least expensive journeys*/
 	public List<Journey> getLeastExpensiveJourneys() 
 	{
 		List<Journey> journeys = this.journeys;
-		Comparator<Journey> comparator = new Comparator<Journey>() 
-				{
-	
-			/*
+		Comparator<Journey> comparator = new Comparator<Journey>() {
 			@Override
 			public int compare(Journey journey1, Journey journey2) 
 			{
-				if(journey2.getDestination().getDistance() < journey1.getDestination().getDistance()) 
+				if(journey2.getCost() < journey1.getCost()) 
 				{
 					return 1;
-				} else if(journey2.getDestination().getDistance() > journey1.getDestination().getDistance()) 
-				{
-					return -1;
-				} else {
-					return 0;
-				}
-			}
-			*/
-			@Override
-			public int compare(Journey journey1, Journey journey2) 
-			{
-				if(journey2.calculateFare() < journey1.calculateFare()) 
-				{
-					return 1;
-				} else if(journey2.calculateFare() > journey1.calculateFare()) 
+				} else if(journey2.getCost() > journey1.getCost()) 
 				{
 					return -1;
 				} else {
@@ -133,6 +98,7 @@ public class JourneyFileOps extends FileOps
 		
 		return journeys;
 	}
+	
 	/*Return unique records of drivers' names, and the unique destinations they have visited*/
 	public TreeSet<Taxi> getDriversAndVisitedPlaces() 
 	{
@@ -381,13 +347,4 @@ public class JourneyFileOps extends FileOps
 		
 		return s;
 	}
-	
-	
-
-	//
-	//
-	// GET FIRST FIVE JOURNEYS FROM LISTS, SORT THEM IN ASC DESC ORDER, AND WRITE THEM TO A FILE
-	//
-	//
-
 }

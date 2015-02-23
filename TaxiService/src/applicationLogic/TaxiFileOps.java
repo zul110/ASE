@@ -1,11 +1,9 @@
 package applicationLogic;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.io.FileNotFoundException;
 import dataClasses.Taxi;
 
 public class TaxiFileOps extends FileOps 
@@ -20,24 +18,22 @@ public class TaxiFileOps extends FileOps
 	}
 	
 	/*Return Taxis*/
-	public List<Taxi> getTaxis() 
-	{
-		try
-		{
+	public List<Taxi> getTaxis() {
+		try {
 			List<String> lines = readLinesFromFile();
 		
-			for(String line : lines) 
-			{
+			for(String line : lines) {
 				String[] words = line.split(";");
 			
 				Taxi taxi = new Taxi(words[1], words[0]);
 			
 				taxis.add(taxi);
 			}
-		}
-		catch(Exception exc)
-		{
-			Helpers.println(exc.getMessage());
+		} catch(IndexOutOfBoundsException indexEx) {
+			throw indexEx;
+		} catch(Exception ex) {
+			Helpers.println("Unknown error. More info:");
+			Helpers.println(ex.getMessage());
 		}
 		
 		return taxis;
@@ -48,35 +44,26 @@ public class TaxiFileOps extends FileOps
 	{
 		TreeSet<Taxi> taxis = new TreeSet<Taxi>();
 		
-		for(Taxi taxi : getTaxis()) 
-		{
+		for(Taxi taxi : getTaxis()) {
 			taxis.add(taxi);
 		}
 		
 		return taxis;
 	}
 	
-	/*Write drivers nad destinations to a file*/
-	public static void writeDriversAndDestinationsToFile(Set<Taxi> taxis, String fileName) throws FileNotFoundException 
+	/*Write drivers and destinations to a file*/
+	public static void writeDriversAndDestinationsToFile(Set<Taxi> taxis, String fileName) throws Exception 
 	{
-		try
-		{
+		try {
 			String s = "";
 		
-			for(Taxi taxi : taxis) 
-			{
+			for(Taxi taxi : taxis) {
 				s += taxi.toString();
 			}
 		
 			writeToFile(fileName, s);
-		}	
-		catch(Exception exc)
-		{
-			Helpers.println(exc.getMessage());
+		} catch(Exception ex) {
+			throw ex;
 		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
-		}	
 	}
 }

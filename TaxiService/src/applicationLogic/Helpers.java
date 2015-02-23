@@ -153,4 +153,37 @@ public class Helpers
 		}
 		
 	}
+	
+	public static String getTableHead() {
+		String head = "";
+		head += "-----------------------------------------------------------------------------------------\n";
+		head += "Taxi        	  Driver     		  Destination   	     Distance Passengers Cost\n";
+		head += "-----------------------------------------------------------------------------------------";
+		
+		return head;
+	}
+	
+	public static String getTableFoot() {
+		String foot = "";
+		foot += "-----------------------------------------------------------------------------------------\n\n";
+		
+		return foot;
+	}
+	
+	public static double calculateFare(double distance, int numberOfPassengers)
+	{
+		double totalFare = 0.0;
+		double pricePerFifthMile = 0.50;
+		double dropOffCharge = 2.50;
+		double overTwoPassengerCharge = 2.00;
+		//double perLuggagePiece = 1.00;
+	
+		if (numberOfPassengers > 2) {
+			totalFare = overTwoPassengerCharge * (numberOfPassengers - 2);
+		}
+		
+		totalFare += dropOffCharge + (distance * pricePerFifthMile);
+		
+		return totalFare;
+	}
 }

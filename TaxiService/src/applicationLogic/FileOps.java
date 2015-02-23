@@ -26,31 +26,24 @@ public class FileOps {
 	}
 	
 	/*Read data from file*/
-	public List<String> readLinesFromFile() 
+	public List<String> readLinesFromFile() throws Exception 
 	{
-		Path path = Paths.get(getPath(fileName));	
-		try 
-		{
+		try {
+			Path path = Paths.get(getPath(fileName));
 			lines = Files.readAllLines(path, StandardCharsets.UTF_8);
-		} 
-			
-		//Exception -message and stop if file not found
-		catch (FileNotFoundException fnf)
-		{
-			 System.out.println(fileName + " not found ");
-			 System.exit(0);
-		 }	
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-			System.exit(1);
+		} catch(FileNotFoundException fileEx) {
+			throw fileEx;
+		} catch(IOException ioEx) {
+			throw ioEx;
+		} catch(Exception ex) {
+			throw ex;
 		}
 		
 		return lines;
 	}
 	
 	/*Write data to a text file*/
-	public static void writeToFile(String fileName, String textToWrite) 
+	public static void writeToFile(String fileName, String textToWrite) throws Exception 
 	{
 		fileName += "_";
 		fileName += new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -58,43 +51,31 @@ public class FileOps {
 		
 		Writer writer = null;
 
-		try 
-		{
+		try {
 		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"));
 		    writer.write(textToWrite);
 		   
-		    Helpers.println("success");
-		}
-		//Exception -message and stop if file not found
-		catch (FileNotFoundException fnf)
-		{
-			System.out.println(fileName + " not found ");
-			System.exit(0);
-		}	
-		catch (IOException ex) 
-		{
-		  Helpers.println(ex.getMessage());
-		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
-		}
-		finally 
-		{
-		   
-			try 
-			{
+		    Helpers.println("Added data to file \"" + fileName + "\" successfully.");
+		} catch (IOException ex) {
+			throw new IOException();
+		} finally {
+			try {
 			   writer.close();
-		   } 
-			catch (Exception ex) 
-			{
+			} catch(Exception ex) {
+			   Helpers.println("Error in closing file.");
+			   Helpers.println("More info:");
 			   Helpers.println(ex.getMessage());
-		   }
+			}
 		}
 	}
 	/*Return path of the file*/
-	public String getPath(String fileName) {
+	public String getPath(String fileName) throws FileNotFoundException {
 		URL url = Main.class.getClassLoader().getResource(fileName);
+		
+		if(url == null) {
+			throw new FileNotFoundException();
+		}
+		
 		return url.getPath().substring(1, url.getPath().length());
 	}
 }

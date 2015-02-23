@@ -58,6 +58,7 @@ public class Taxi implements Comparable<Taxi> {
 			s += "-----------------------------------------------------------------" + "\n";
 			s += "Driver						: " + driver + "\n";
 			s += "Taxi-Registration number	: " + registrationNumber + "\n";
+			
 			if(destinations != null && !destinations.isEmpty()) 
 			{
 				for(Destination destination : destinations) {
@@ -71,6 +72,9 @@ public class Taxi implements Comparable<Taxi> {
 		{
 			Helpers.println(e.getMessage());
 			e.printStackTrace();
+		} catch(Exception ex) {
+			Helpers.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 		return s;
 	}

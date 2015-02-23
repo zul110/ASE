@@ -11,34 +11,29 @@ public class Main {
 		try
 		{
 			journeyFile2014 = new JourneyFileOps(Helpers.DESTINATIONS_2014_FILE_NAME);
-		
 			journeyFile2015 = new JourneyFileOps(Helpers.JOURNEYS_2015_FILE_NAME);
-		
 		
 			TaxiFileOps.writeDriversAndDestinationsToFile(journeyFile2015.getDriversAndVisitedPlaces(), "DriversAndDestinations");
 		
-			String s1 = "";
-			String s2 = "";
-			s2 += "------------------------------------------------------------------------------------" + "\n";
-			s1 += "------------------------------------------------------------------------------------" + "\n";
-			s1+= "\nTaxi        	  Driver     		  Destination   	     Distance Passengers Cost Year "+"\n";
-			s1 += "------------------------------------------------------------------------------------- ";
 			JourneyFileOps.writeTopFiveAndCheapestJourneysToFile(
-					
-					
-					JourneyFileOps.getFirstFiveJourneys(journeyFile2015.getMostExpensiveJourneys(), "Top 5 Journeys\n" + s1 + ""),
-					JourneyFileOps.getFirstFiveJourneys(journeyFile2015.getLeastExpensiveJourneys(), s2  + "Cheapest 5 Journeys\n" + s1 + "")
+					JourneyFileOps.getFirstFiveJourneys(
+							journeyFile2015.getMostExpensiveJourneys(),
+							"Top 5 Journeys\n" + Helpers.getTableHead() + ""
+							),
+					JourneyFileOps.getFirstFiveJourneys(
+							journeyFile2015.getLeastExpensiveJourneys(),
+							Helpers.getTableFoot() + "Cheapest 5 Journeys\n" + Helpers.getTableHead() + ""
+							)
 					);
 		
-			JourneyFileOps.writeUniqueAndCommonDestinations(journeyFile2015.getUniqueJourneySet(), journeyFile2014.getUniqueJourneySet());
+			JourneyFileOps.writeUniqueAndCommonDestinations(
+					journeyFile2015.getUniqueJourneySet(),
+					journeyFile2014.getUniqueJourneySet()
+					);
 		}
-		catch(Exception exc)
+		catch(Exception ex)
 		{
-			Helpers.println(exc.getMessage());
-		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
+			Helpers.println(ex.getMessage());
 		}
 	}
 		
