@@ -35,10 +35,6 @@ public class Helpers
 		{
 			Helpers.println(exc.getMessage());
 		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
-		}
 	}
 	
 	/*Display destinations*/

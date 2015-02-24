@@ -31,6 +31,11 @@ public class FileOps {
 		try {
 			Path path = Paths.get(getPath(fileName));
 			lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+			
+			if(lines.size() == 0) {
+				throw new IllegalStateException(fileName + ": Invalid file format, or empty file.");
+			}
+			
 		} catch(FileNotFoundException fileEx) {
 			throw fileEx;
 		} catch(IOException ioEx) {
@@ -73,7 +78,7 @@ public class FileOps {
 		URL url = Main.class.getClassLoader().getResource(fileName);
 		
 		if(url == null) {
-			throw new FileNotFoundException();
+			throw new FileNotFoundException(fileName + " not found. Please make sure that " + fileName + " exists.");
 		}
 		
 		return url.getPath().substring(1, url.getPath().length());

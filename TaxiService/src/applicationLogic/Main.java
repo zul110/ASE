@@ -1,6 +1,8 @@
 
 package applicationLogic;
 
+import java.io.FileNotFoundException;
+
 public class Main {
 	private static JourneyFileOps journeyFile2014;
 	private static JourneyFileOps journeyFile2015;
@@ -30,9 +32,13 @@ public class Main {
 					journeyFile2015.getUniqueJourneySet(),
 					journeyFile2014.getUniqueJourneySet()
 					);
-		}
-		catch(Exception ex)
-		{
+		} catch(FileNotFoundException fileEx) {
+			Helpers.println(fileEx.getMessage());
+		} catch(IllegalStateException illEx) {
+			Helpers.println(illEx.getMessage());
+		} catch(IndexOutOfBoundsException indexEx) {
+			Helpers.println(indexEx.getMessage());
+		} catch(Exception ex) {
 			Helpers.println(ex.getMessage());
 		}
 	}

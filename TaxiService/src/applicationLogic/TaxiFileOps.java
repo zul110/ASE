@@ -1,9 +1,11 @@
 package applicationLogic;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
 import dataClasses.Taxi;
 
 public class TaxiFileOps extends FileOps 
@@ -18,19 +20,27 @@ public class TaxiFileOps extends FileOps
 	}
 	
 	/*Return Taxis*/
-	public List<Taxi> getTaxis() {
+	public List<Taxi> getTaxis() throws FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception {
 		try {
 			List<String> lines = readLinesFromFile();
 		
 			for(String line : lines) {
-				String[] words = line.split(";");
-			
-				Taxi taxi = new Taxi(words[1], words[0]);
-			
-				taxis.add(taxi);
+				if(line.length() > 0) {
+					String[] words = line.split(";");
+					String driver = words[1];
+					String registrationNumber = words[0];
+				
+					Taxi taxi = new Taxi(driver, registrationNumber);
+				
+					taxis.add(taxi);
+				}
 			}
+		} catch(FileNotFoundException fileEx) {
+			throw fileEx;
+		} catch(IllegalStateException illEx) {
+			throw illEx;
 		} catch(IndexOutOfBoundsException indexEx) {
-			throw indexEx;
+			throw new IndexOutOfBoundsException(Helpers.TAXIS_FILE_NAME + ": Invalid file format.");
 		} catch(Exception ex) {
 			Helpers.println("Unknown error. More info:");
 			Helpers.println(ex.getMessage());
@@ -40,7 +50,7 @@ public class TaxiFileOps extends FileOps
 	}
 	
 	/*Return sorted list of Taxis in ascending order*/
-	public Set<Taxi> getSortedTaxisAsc() 
+	public Set<Taxi> getSortedTaxisAsc() throws Exception 
 	{
 		TreeSet<Taxi> taxis = new TreeSet<Taxi>();
 		
