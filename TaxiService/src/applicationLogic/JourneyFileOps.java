@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
 
+import customExceptions.InvalidFormatException;
 import dataClasses.Destination;
 import dataClasses.Journey;
 import dataClasses.Taxi;
@@ -19,6 +20,9 @@ public class JourneyFileOps extends FileOps
 	
 	private int year;
 	
+	private String lineCopy;
+	private int lineNumber = 0;
+	
 	public JourneyFileOps(String fileName) throws FileNotFoundException, IllegalStateException,  Exception 
 	{
 		super(fileName);
@@ -27,7 +31,6 @@ public class JourneyFileOps extends FileOps
 		this.journeys = new ArrayList<Journey>();
 		
 		try {
-			this.taxis = getTaxis();
 			this.destinations = getDestinations();
 			
 			getJourneys();
@@ -48,6 +51,7 @@ public class JourneyFileOps extends FileOps
 			List<String> lines = readLinesFromFile();
 		
 			if(year == 2015) {
+				this.taxis = getTaxis();
 				get2015Journeys(lines);
 			} else {
 				get2014Journeys(lines);
@@ -72,55 +76,91 @@ public class JourneyFileOps extends FileOps
 	}
 
 	/*Display 2015 Journeys*/
-	private List<Journey> get2015Journeys(List<String> lines) throws IndexOutOfBoundsException, Exception
+	private List<Journey> get2015Journeys(List<String> lines) throws Exception
 	{
-		try {
-			for(String line : lines) {
+			while(lineNumber < lines.size()) {
+				String line = lines.get(lineNumber);
+				lineCopy = line;
+				lineNumber++;
+				
+				String registrationNumber = "";
+				String destinationName = "";
+				int numberOfPassengers = 0;
+				
 				if(line.length() > 0) {
 					String[] words = line.split(";");
-					String registrationNumber = words[0];
-					String destinationName = words[1];
-					int numberOfPassengers = Integer.parseInt(words[2]);
-					
-					Taxi taxi = new Taxi(getDriverName(registrationNumber), registrationNumber);
-					Destination destination = new Destination(destinationName, getDistance(destinationName));
-					
-					Journey journey = new Journey(year, destination, taxi, numberOfPassengers);
-					
-					journeys.add(journey);
+					try {
+						if(words[0].isEmpty() || words[1].isEmpty() || words[2].isEmpty()) {
+							throw new InvalidFormatException(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nPossible cause: empty field.\n");
+						}
+						
+						if(!Helpers.isRegistrationNumberValid(words[0])) {
+							throw new InvalidFormatException(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nInvalid taxi registration number.\n");
+						}
+						
+						if(!Helpers.isInteger(words[2])) {
+							throw new NumberFormatException(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nNumber of passengers must be a decimal number.\n");
+						}
+						
+						registrationNumber = words[0];
+						destinationName = words[1];
+						numberOfPassengers = Integer.parseInt(words[2]);
+						
+						
+						Taxi taxi = new Taxi(getDriverName(registrationNumber), registrationNumber);
+						Destination destination = new Destination(destinationName, getDistance(destinationName));
+						
+						Journey journey = new Journey(year, destination, taxi, numberOfPassengers);
+						
+						journeys.add(journey);
+					} catch(IndexOutOfBoundsException indexEx) {
+						Helpers.println(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\n");
+					} catch(InvalidFormatException invalidEx) {
+						Helpers.println(invalidEx.getMessage());
+					} catch(NumberFormatException numEx) {
+						Helpers.println(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nNumber of passengers must be a decimal number.\n");
+					} catch(Exception ex) {
+						throw ex;
+					}
 				}
 			}
-		} catch(IndexOutOfBoundsException indexEx) {
-			throw new IndexOutOfBoundsException(Helpers.JOURNEYS_2015_FILE_NAME + ": Invalid file format.");
-		} catch(Exception ex) {
-			throw ex;
-		}
 		
 		return journeys;
 	}
 
 	/*Display 2014 Journeys*/
-	private List<Journey> get2014Journeys(List<String> lines) 
+	private List<Journey> get2014Journeys(List<String> lines) throws Exception
 	{
-		try {
-			for(String line : lines) {
+		while(lineNumber < lines.size()) {
+			String line = lines.get(lineNumber);
+			lineCopy = line;
+			lineNumber++;
+			
 				if(line.length() > 0) {
 					String[] words = line.split(";");
-					String destinationName = words[0];
-					
-					Destination destination = new Destination(destinationName, getDistance(destinationName));
-					
-					Journey journey = new Journey(year, destination, null, 0);
-					
-					journeys.add(journey);
+					try {
+						String destinationName = words[0];
+						
+						if(destinationName.isEmpty()) {
+							throw new InvalidFormatException(Helpers.DESTINATIONS_2014_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nPossible cause: empty field.\n");
+						}
+						
+						Destination destination = new Destination(destinationName, getDistance(destinationName));
+						
+						Journey journey = new Journey(year, destination, null, 0);
+						
+						journeys.add(journey);
+					} catch(IndexOutOfBoundsException indexEx) {
+						Helpers.println(Helpers.DESTINATIONS_2014_FILE_NAME + ": Index out of bounds.\nLine number: " + lineNumber + " (" + lineCopy + ")\n");
+					} catch(InvalidFormatException invalidEx) {
+						Helpers.println(invalidEx.getMessage());
+					} catch(NumberFormatException numEx) {
+						Helpers.println(Helpers.DESTINATIONS_2014_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nNumber of passengers must be a number\n");
+					} catch(Exception ex) {
+						throw ex;
+					}
 				}
 			}
-		} catch(IndexOutOfBoundsException indexEx) {
-			throw new IndexOutOfBoundsException(Helpers.DESTINATIONS_2014_FILE_NAME + ": Invalid file format.");
-		} catch(Exception ex) {
-			throw ex;
-		}
-		
 		return journeys;
 	}
 
@@ -190,8 +230,7 @@ public class JourneyFileOps extends FileOps
 	/*Return unique and common destinations*/
 	public static void writeUniqueAndCommonDestinations(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
 	{
-		try
-		{
+		try {
 			TreeSet<Journey> uniqueJourneys1 = getUniqueJourneys(journeys1, journeys2);
 			TreeSet<Journey> uniqueJourneys2 = getUniqueJourneys(journeys2, journeys1);
 			TreeSet<Journey> commonJourneys = getCommonJourneys(journeys1, journeys2);
@@ -204,14 +243,8 @@ public class JourneyFileOps extends FileOps
 				);
 		
 			writeToFile("UniqueAndCommonJourneys", s);
-		}
-		catch(Exception exc)
-		{
+		} catch(Exception exc) {
 			Helpers.println(exc.getMessage());
-		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
 		}
 	}
 

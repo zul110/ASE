@@ -1,5 +1,6 @@
 package applicationLogic;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -181,5 +182,71 @@ public class Helpers
 		totalFare += dropOffCharge + (distance * pricePerFifthMile);
 		
 		return totalFare;
+	}
+	
+	public static boolean isDouble(String string) {
+		try {
+			double d = Double.parseDouble(string);
+		} catch(NumberFormatException numEx) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public static boolean isInteger(String string) {
+		try {
+			double d = Integer.parseInt(string);
+		} catch(NumberFormatException numEx) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public static boolean isRegistrationNumberValid(String registrationNumber) {
+		String[] reg = registrationNumber.split("-");
+		if(reg.length == 3) {
+			if(reg[0].toUpperCase().equals("SWISS")
+					&& getCodes().contains(reg[1].toUpperCase())
+					&& reg[2].length() == 6
+					&& Helpers.isInteger(reg[2])) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static HashSet<String> getCodes() {
+		HashSet<String> codes = new HashSet<String>();
+		codes.add("AG");
+		codes.add("AI");
+		codes.add("AR");
+		codes.add("BE");
+		codes.add("BL");
+		codes.add("BS");
+		codes.add("FR");
+		codes.add("GE");
+		codes.add("GL");
+		codes.add("GR");
+		codes.add("JU");
+		codes.add("LU");
+		codes.add("NE");
+		codes.add("NW");
+		codes.add("OW");
+		codes.add("SG");
+		codes.add("SH");
+		codes.add("SO");
+		codes.add("SZ");
+		codes.add("TG");
+		codes.add("TI");
+		codes.add("UR");
+		codes.add("VD");
+		codes.add("VS");
+		codes.add("ZG");
+		codes.add("ZH");
+		
+		return codes;
 	}
 }

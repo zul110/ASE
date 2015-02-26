@@ -60,10 +60,8 @@ public class Journey implements Comparable<Journey> {
 	public String toString() 
 	{
 		String s = "";
-		try
-		{
-			if(taxi != null) 
-			{
+		try {
+			if(taxi != null) {
 				s += String.format("%-18s", taxi.getRegistrationNumber());
 				s += String.format("%-20s", taxi.getDriver());
 			}
@@ -72,14 +70,10 @@ public class Journey implements Comparable<Journey> {
 			s += String.format("%-8s",  numberOfPassengers);
 			s += String.format("%-5s",  cost);
 			s += "\n";
-		}
-		catch (NullPointerException e) 
-		{
-			Helpers.println(e.getMessage());
-			e.printStackTrace();
+		} catch (NullPointerException nullEx) {
+			Helpers.println("Taxis not found");
 		} catch(Exception ex) {
-			Helpers.println(ex.getMessage());
-			ex.printStackTrace();
+			throw ex;
 		}
 		return s;
 	}

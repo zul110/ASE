@@ -17,7 +17,7 @@ import java.util.List;
 import java.io.FileNotFoundException;
 public class FileOps {
 	private String fileName = "";
-	private List<String> lines;
+	protected List<String> lines;
 	
 	public FileOps(String fileName) 
 	{
@@ -26,7 +26,7 @@ public class FileOps {
 	}
 	
 	/*Read data from file*/
-	public List<String> readLinesFromFile() throws Exception 
+	public List<String> readLinesFromFile() throws FileNotFoundException, IOException, IllegalStateException, Exception 
 	{
 		try {
 			Path path = Paths.get(getPath(fileName));
@@ -73,6 +73,7 @@ public class FileOps {
 			}
 		}
 	}
+	
 	/*Return path of the file*/
 	public String getPath(String fileName) throws FileNotFoundException {
 		URL url = Main.class.getClassLoader().getResource(fileName);

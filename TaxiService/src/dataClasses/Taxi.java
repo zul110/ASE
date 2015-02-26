@@ -68,13 +68,10 @@ public class Taxi implements Comparable<Taxi> {
 			}
 			s += "\n";
 		}
-		catch (NullPointerException e) 
-		{
-			Helpers.println(e.getMessage());
-			e.printStackTrace();
+		catch (NullPointerException nullEx) {
+			Helpers.println("Destinations not found");
 		} catch(Exception ex) {
-			Helpers.println(ex.getMessage());
-			ex.printStackTrace();
+			throw ex;
 		}
 		return s;
 	}
