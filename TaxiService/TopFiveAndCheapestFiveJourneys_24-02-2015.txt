@@ -1,0 +1,22 @@
+Top 5 Journeys
+-----------------------------------------------------------------------------------------
+Taxi        	  Driver     		  Destination   	     Distance Passengers Cost
+-----------------------------------------------------------------------------------------:
+SWISS-ZH-668667   Paul,Mathew         Zuerich,Mattenbach       10.5      5       13.75
+SWISS-ZH-668667   Paul,Mathew         Zuerich,Mattenbach       10.5      5       13.75
+SWISS-GE-252385   Mathew,Thomas       Geneva,Lake Geneva       9.5       4       11.25
+SWISS-GE-245670   NOT FOUND           Geneva,Lake Geneva       9.5       4       11.25
+SWISS-GE-237890   NOT FOUND           Geneva,LeJetdEau         6.5       4       9.75 
+
+-----------------------------------------------------------------------------------------
+
+Cheapest 5 Journeys
+-----------------------------------------------------------------------------------------
+Taxi        	  Driver     		  Destination   	     Distance Passengers Cost
+-----------------------------------------------------------------------------------------:
+SWISS-ZH-678267   Antony,Mathew       Zuerich,Wallisellen      1.5       2       3.25 
+SWISS-GE-274788   Charles,George      Geneva,CERN              2.5       2       3.75 
+SWISS-ZH-390123   NOT FOUND           Zuerich,Kreis 3          5.0       3       7.0  
+SWISS-ZH-456321   George,John         Zuerich,Wollishofen      3.5       4       8.25 
+SWISS-ZH-334765   William,John        Zuerich,Kreis 11         4.5       4       8.75 
+
