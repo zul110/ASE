@@ -9,15 +9,22 @@ public class Journey implements Comparable<Journey> {
 	private int numberOfPassengers;
 	private double cost;
 	
-	public Journey(int year, Destination destination, Taxi taxi, int numberOfPassengers) {
+	public Journey(int year, Destination destination, Taxi taxi, int numberOfPassengers) 
+	{
 		super();
+		try
+		{
+			this.year = year;
+			this.destination = destination;
+			this.taxi = taxi;
+			this.numberOfPassengers = numberOfPassengers;
 		
-		this.year = year;
-		this.destination = destination;
-		this.taxi = taxi;
-		this.numberOfPassengers = numberOfPassengers;
-		
-		cost = Helpers.calculateFare(destination.getDistance(), numberOfPassengers);
+			cost = Helpers.calculateFare(destination.getDistance(), numberOfPassengers);
+		}
+		catch(Exception exc)
+		{
+			Helpers.println(exc.getMessage());
+		}
 	}
 
 	public int getYear() {

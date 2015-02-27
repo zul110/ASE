@@ -19,7 +19,8 @@ public class Main {
 		
 		generateTaxiReports();
 	}
-
+	
+	/*Display journeys in 2014*/
 	private static void get2014Journeys() {
 		try {
 			journeyFile2014 = new JourneyFileOps(Helpers.DESTINATIONS_2014_FILE_NAME);
@@ -27,7 +28,8 @@ public class Main {
 			Helpers.println(ex.getMessage() + "\n");
 		}
 	}
-
+	
+	/*Display journeys in 2015*/
 	private static void get2015Journeys() {
 		try {
 			journeyFile2015 = new JourneyFileOps(Helpers.JOURNEYS_2015_FILE_NAME);
@@ -35,7 +37,8 @@ public class Main {
 			Helpers.println(ex.getMessage() + "\n");
 		}
 	}
-
+	
+	/*Display taxi reports*/
 	private static void generateTaxiReports() {
 			generateDriversAndDestinationsReport();
 			
@@ -43,7 +46,8 @@ public class Main {
 			
 			generateUniqueAndCommonDestinationsReport();
 	}
-
+	
+	/*Display drivers and destination reports*/
 	private static void generateDriversAndDestinationsReport() {
 		try {
 			TaxiFileOps.writeDriversAndDestinationsToFile(journeyFile2015.getDriversAndVisitedPlaces(), "DriversAndDestinations");
@@ -51,7 +55,8 @@ public class Main {
 			Helpers.println(ex.getMessage() + "\n");
 		}
 	}
-
+	
+	/*Display Top five and cheapest five journeys*/
 	private static void generateTopFiveAndCheapestFiveJourneysReport() {
 		try {
 		JourneyFileOps.writeTopFiveAndCheapestJourneysToFile(
@@ -69,6 +74,7 @@ public class Main {
 		}
 	}
 
+	/*Display  Unique and Common destinations reports*/
 	private static void generateUniqueAndCommonDestinationsReport() {
 		try {
 		JourneyFileOps.writeUniqueAndCommonDestinations(

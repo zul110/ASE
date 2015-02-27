@@ -94,7 +94,7 @@ public class Helpers
 		}
 	}
 	
-	/*Display most expensive journeys*/
+	/* Display most expensive journeys */
 	public static void displayMostExpensiveJourneys(List<Journey> journeys) 
 	{
 		try
@@ -150,7 +150,7 @@ public class Helpers
 		}
 		
 	}
-	
+	/* Display table header */
 	public static String getTableHead() {
 		String head = "";
 		head += "-----------------------------------------------------------------------------------------\n";
@@ -159,7 +159,7 @@ public class Helpers
 		
 		return head;
 	}
-	
+	/* Display table footer */
 	public static String getTableFoot() {
 		String foot = "";
 		foot += "-----------------------------------------------------------------------------------------\n\n";
@@ -167,6 +167,7 @@ public class Helpers
 		return foot;
 	}
 	
+	/* Calculate taxi fare */
 	public static double calculateFare(double distance, int numberOfPassengers)
 	{
 		double totalFare = 0.0;
@@ -184,6 +185,7 @@ public class Helpers
 		return totalFare;
 	}
 	
+	/* Test double data type validation */
 	public static boolean isDouble(String string) {
 		try {
 			double d = Double.parseDouble(string);
@@ -194,6 +196,7 @@ public class Helpers
 		return true;
 	}
 	
+	/* Test double number validation */
 	public static boolean isInteger(String string) {
 		try {
 			double d = Integer.parseInt(string);
@@ -204,6 +207,7 @@ public class Helpers
 		return true;
 	}
 	
+	/* Test taxi registration number format validation */
 	public static boolean isRegistrationNumberValid(String registrationNumber) {
 		String[] reg = registrationNumber.split("-");
 		if(reg.length == 3) {
@@ -218,6 +222,7 @@ public class Helpers
 		return false;
 	}
 	
+	/* Store country continent codes in a hash table  */
 	public static HashSet<String> getCodes() {
 		HashSet<String> codes = new HashSet<String>();
 		codes.add("AG");

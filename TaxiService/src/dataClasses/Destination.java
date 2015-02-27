@@ -1,14 +1,23 @@
 package dataClasses;
 
+import applicationLogic.Helpers;
+
 public class Destination implements Comparable<Destination> {
 	private String name;
 	private double distance;
 	
-	public Destination(String name, double distance) {
+	public Destination(String name, double distance) 
+	{
 		super();
-		
-		this.name = name;
-		this.distance = distance;
+		try
+		{
+			this.name = name;
+			this.distance = distance;
+		}
+		catch(Exception exc)
+		{
+			Helpers.println(exc.getMessage());
+		}
 	}
 	
 	public String getName() {

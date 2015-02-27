@@ -9,13 +9,20 @@ public class Taxi implements Comparable<Taxi> {
 	private String registrationNumber;
 	private TreeSet<Destination> destinations;
 	
-	public Taxi(String driver, String registrationNumber) {
+	public Taxi(String driver, String registrationNumber) 
+	{
 		super();
+		try
+		{
+			this.driver = driver;
+			this.registrationNumber = registrationNumber;
 		
-		this.driver = driver;
-		this.registrationNumber = registrationNumber;
-		
-		destinations = new TreeSet<Destination>();
+			destinations = new TreeSet<Destination>();
+		}
+		catch(Exception exc)
+		{
+			Helpers.println(exc.getMessage());
+		}
 	}
 
 	public String getDriver() {
