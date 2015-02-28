@@ -45,6 +45,7 @@ public class JourneyFileOps extends FileOps
 		}
 	}
 	
+	/*Display common journeys in 2014 and 2015 and unique journeys in 2014 and 2015*/
 	public void getJourneys() throws FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception
 	{
 		try {
@@ -64,17 +65,15 @@ public class JourneyFileOps extends FileOps
 			throw ex;
 		}
 	}
-	
 	private List<Taxi> getTaxis() throws Exception 
 	{
 		return new TaxiFileOps(Helpers.TAXIS_FILE_NAME).getTaxis();
 	}
-
+	
 	private List<Destination> getDestinations() throws Exception 
 	{
 		return new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME).getDestinations();
 	}
-
 	/*Display 2015 Journeys*/
 	private List<Journey> get2015Journeys(List<String> lines) throws Exception
 	{
