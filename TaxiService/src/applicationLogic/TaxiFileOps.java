@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describe methods for Taxi File Operations
+ */
 package applicationLogic;
 
 import java.io.FileNotFoundException;
@@ -18,6 +23,14 @@ public class TaxiFileOps extends FileOps
 	private String lineCopy;
 	private int lineNumber = 0;
 	
+	/**
+	 * Constructor for TaxiFileOps
+	 * @param fileName
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws IllegalStateException
+	 * @throws Exception
+	 */
 	public TaxiFileOps(String fileName) throws FileNotFoundException, IOException, IllegalStateException, Exception
 	{
 		super(fileName);
@@ -35,7 +48,15 @@ public class TaxiFileOps extends FileOps
 		}
 	}
 	
-	/*Return Taxis*/
+	/**
+	 * Return taxis
+	 * @return List<Taxi>
+	 * @throws InvalidFormatException
+	 * @throws FileNotFoundException
+	 * @throws IllegalStateException
+	 * @throws IndexOutOfBoundsException
+	 * @throws Exception
+	 */
 	public List<Taxi> getTaxis() throws InvalidFormatException, FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception {
 			while(lineNumber < lines.size()) {
 				String line = lines.get(lineNumber);
@@ -73,8 +94,12 @@ public class TaxiFileOps extends FileOps
 			}
 		return taxis;
 	}
-
-	/*Return sorted list of Taxis in ascending order*/
+	
+	/**
+	 * Method to return sorted list of taxis in ascending order
+	 * @return Set<Taxi>
+	 * @throws Exception
+	 */
 	public Set<Taxi> getSortedTaxisAsc() throws Exception 
 	{
 		TreeSet<Taxi> taxis = new TreeSet<Taxi>();
@@ -85,8 +110,13 @@ public class TaxiFileOps extends FileOps
 		
 		return taxis;
 	}
-	
-	/*Write drivers and destinations to a file*/
+
+	/**
+	 * Write drivers and destinations to a file
+	 * @param taxis
+	 * @param fileName
+	 * @throws Exception
+	 */
 	public static void writeDriversAndDestinationsToFile(Set<Taxi> taxis, String fileName) throws Exception 
 	{
 		try {

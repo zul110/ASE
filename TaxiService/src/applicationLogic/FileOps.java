@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describe methods for FileOps
+ */
 package applicationLogic;
 
 import java.io.BufferedWriter;
@@ -25,7 +30,10 @@ public class FileOps {
 		this.lines = new ArrayList<String>();
 	}
 	
-	/*Read data from file*/
+	/**
+	 * Read data from file
+	 * In case of any errors during, the error message is printed 
+	 */
 	public List<String> readLinesFromFile() throws FileNotFoundException, IOException, IllegalStateException, Exception 
 	{
 		try {
@@ -47,7 +55,10 @@ public class FileOps {
 		return lines;
 	}
 	
-	/*Write data to a text file*/
+	/**
+	 * Write data to a text file
+	 * In case of error during execution, error message is printed
+	 */
 	public static void writeToFile(String fileName, String textToWrite) throws Exception 
 	{
 		fileName += "_";
@@ -74,7 +85,10 @@ public class FileOps {
 		}
 	}
 	
-	/*Return path of the file*/
+	/**
+	 * Return path of the file
+	 * If the file is not dound, FileNotFound exception is thrown
+	 */
 	public String getPath(String fileName) throws FileNotFoundException {
 		URL url = Main.class.getClassLoader().getResource(fileName);
 		

@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describe methods for JUnit Testing
+ */
 package testClasses;
 
 import static org.junit.Assert.*;
@@ -17,6 +22,10 @@ public class JourneyTest{
 		assertEquals(calculateFare(), Helpers.calculateFare(distance, numberOfPassengers), 0.1);
 	}
 	
+	/**
+	 * Vehicle Registration Format of Switzerland-"SWISS-2 Letter Canton-6 Digits"
+	 *
+	 */
 	@Test
 	public void testRegistrationNumberValidity() {
 		String registrationNumber = "SWISS-BE-237890";
@@ -47,6 +56,12 @@ public class JourneyTest{
 		assertEquals(expectedValue, actualValue);
 	}
 
+	/**
+	 * Method to calculate total fare of a journey
+	 * If the number of passengers are over 2, an extra 2 Fr(Francs) is charged 
+	 * For every fifth mile, 0.50 Fr and Drop Off Charge of 2.50 Fr is also considered
+	 * @return totalFare
+	 */
 	private double calculateFare() {
 		double pricePerFifthMile = 0.50;
 		double totalFare = 0.0;

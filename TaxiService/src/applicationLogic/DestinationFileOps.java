@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describe methods for Destination File Operations
+ */
 package applicationLogic;
 
 import java.util.ArrayList;
@@ -11,6 +16,10 @@ public class DestinationFileOps extends FileOps
 {
 	private List<Destination> destinations;
 	
+	/**
+	 * Constructor method of DestinationFileOps Class
+	 * @param fileName
+	 */
 	public DestinationFileOps(String fileName) 
 	{
 		super(fileName);
@@ -18,7 +27,12 @@ public class DestinationFileOps extends FileOps
 		destinations = new ArrayList<Destination>();
 	}
 	
-	/*Store destinations*/
+	/**
+	 * Method to store destinations from the input text file 
+	 * Into List 
+	 * In case of error during execution, print the error message
+	 * @return
+	 */
 	public List<Destination> getDestinations() 
 	{
 		try
@@ -42,7 +56,9 @@ public class DestinationFileOps extends FileOps
 		return destinations;	
 	}
 	
-	/*Sort destination in ascending order*/
+	/**
+	 *  Method to sort destination in ascending order
+	 */
 	public void sortDestinationsAsc() 
 	{
 		Comparator<Destination> comparator = new Comparator<Destination>() 
@@ -65,7 +81,9 @@ public class DestinationFileOps extends FileOps
 		Collections.sort(destinations, comparator);
 	}
 	
-	/*Sort destination in descending order*/
+	/** 
+	 * Method to sort destination in descending order
+	 */
 	public void sortDestinationsDesc() 
 	{
 		Comparator<Destination> comparator = new Comparator<Destination>() 

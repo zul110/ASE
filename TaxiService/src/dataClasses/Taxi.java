@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class defines Taxi Class
+ */
 package dataClasses;
 
 import java.util.TreeSet;
@@ -8,7 +13,12 @@ public class Taxi implements Comparable<Taxi> {
 	private String driver;
 	private String registrationNumber;
 	private TreeSet<Destination> destinations;
-	
+
+	/**
+	 * Creates a Taxi Object with values specified in the parameter
+	 * @param driver				Taxi Driver
+	 * @param registrationNumber	Vehicle Registration Number
+	 */
 	public Taxi(String driver, String registrationNumber) 
 	{
 		super();
@@ -24,7 +34,12 @@ public class Taxi implements Comparable<Taxi> {
 			Helpers.println(exc.getMessage());
 		}
 	}
-
+	
+	/*------------------------------------------------------------------------------------------------------------------------------
+	 * 			 								GETTER AND SETTER METHODS FOR TAXI CLASS
+	 * -----------------------------------------------------------------------------------------------------------------------------
+	 */
+	
 	public String getDriver() {
 		return driver;
 	}
@@ -48,12 +63,19 @@ public class Taxi implements Comparable<Taxi> {
 	public void setRegistrationNumber(String registrationNumber) {
 		this.registrationNumber = registrationNumber;
 	}
+	/*------------------------------------------------------------------------------------------------------------------------------
+	 * 			 								END OF GETTER AND SETTER METHODS FOR TAXI CLASS
+	 * -----------------------------------------------------------------------------------------------------------------------------
+	 */
 	
 	@Override
 	public int compareTo(Taxi other) {
 		return driver.compareTo(other.driver);
 	}
-	
+
+	/**
+	 * Method to format output
+	 */
 	@Override
 	public String toString() 
 	{

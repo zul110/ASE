@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describes methods of the Helpers Class
+ */
 package applicationLogic;
 
 import java.util.HashSet;
@@ -16,13 +21,21 @@ public class Helpers
 	public static final String JOURNEYS_2015_FILE_NAME = "Journeys2015.txt";
 	public static final String DESTINATIONS_2014_FILE_NAME = "Destinations2014.txt";
 	
-	/*Print data*/
+	/**
+	 * Method to print output
+	 * @param s
+	 */
 	public static void println(String s) 
 	{
 		System.out.println(s);
 	}
 	
-	/*Display Taxis*/
+	/**
+	 * Method to print the taxi details 
+	 * In case of an unexpected error in execution,
+	 * Print error message
+	 * @param taxis
+	 */
 	public static void displayTaxis(Set<Taxi> taxis) 
 	{
 		try
@@ -38,7 +51,12 @@ public class Helpers
 		}
 	}
 	
-	/*Display destinations*/
+	/**
+	 * Method to display list of Destinations
+	 * @param destinations
+	 * In case of an unexpected error in execution, 
+	 * Error message is printed
+	 */
 	public static void displayDestinations(List<Destination> destinations) 
 	{
 		try
@@ -57,7 +75,12 @@ public class Helpers
 			Helpers.println(e.getMessage());
 		}
 	}
-	/*Display unique records of drivers' names, and the unique destinations they have visited*/
+	
+	/**
+	 * Method to display details of taxi drivers and destinations they have visited
+	 * @param taxis
+	 * In case of an unexpected error, error message is displayed
+	 */
 	public static void displayDriversAndVisitedPlaces(Set<Taxi> taxis) 
 	{
 		try
@@ -77,7 +100,11 @@ public class Helpers
 		}
 	}
 	
-	/*Display least expensive journeys*/
+	/**
+	 * Method to display the least expensive journeys 
+	 * @param journeys - List of journeys is passed as parameter
+	 * In case of an unexpected error, error message is displayed
+	 */
 	public static void displayLeastExpensiveJourneys(List<Journey> journeys) 
 	{
 		try
@@ -94,7 +121,11 @@ public class Helpers
 		}
 	}
 	
-	/* Display most expensive journeys */
+	/**
+	 * Method to display the most expensive journeys 
+	 * @param journeys - List of journeys is passed as parameter
+	 * In case of an unexpected error, error message is displayed
+	 */
 	public static void displayMostExpensiveJourneys(List<Journey> journeys) 
 	{
 		try
@@ -110,7 +141,12 @@ public class Helpers
 			Helpers.println(e.getMessage());
 		}
 	}
-	/*Display journeys*/
+
+	/**
+	 * Method to display journeys 
+	 * @param journeys - List of journeys is passed as parameter
+	 * In case of an unexpected error, error message is displayed
+	 */
 	public static void displayJourneys(List<Journey> journeys) 
 	{
 		try
@@ -130,7 +166,12 @@ public class Helpers
 		}
 	}
 	
-	/*Display unique journeys*/
+	/**
+	 * Method to display unique destinations visited 
+	 * And corresponding taxi driver name
+	 * @param journeys
+	 * In case of an unexpected error, error message is displayed
+	 */
 	public static void displayUniqueJourneys(TreeSet<Journey> journeys) 
 	{
 		try
@@ -150,7 +191,10 @@ public class Helpers
 		}
 		
 	}
-	/* Display table header */
+	/**
+	 * Method to set header for table display 
+	 * @return head 
+	 */
 	public static String getTableHead() {
 		String head = "";
 		head += "-----------------------------------------------------------------------------------------\n";
@@ -159,7 +203,10 @@ public class Helpers
 		
 		return head;
 	}
-	/* Display table footer */
+	/**
+	 * Method to set footer for table display 
+	 * @return foot  
+	 */
 	public static String getTableFoot() {
 		String foot = "";
 		foot += "-----------------------------------------------------------------------------------------\n\n";
@@ -167,15 +214,19 @@ public class Helpers
 		return foot;
 	}
 	
-	/* Calculate taxi fare */
+	/**
+	 * Method to calculate taxi fare for a journey
+	 * @param distance 
+	 * @param numberOfPassengers
+	 * @return totalFare
+	 */
 	public static double calculateFare(double distance, int numberOfPassengers)
 	{
 		double totalFare = 0.0;
 		double pricePerFifthMile = 0.50;
 		double dropOffCharge = 2.50;
 		double overTwoPassengerCharge = 2.00;
-		//double perLuggagePiece = 1.00;
-	
+		
 		if (numberOfPassengers > 2) {
 			totalFare = overTwoPassengerCharge * (numberOfPassengers - 2);
 		}
@@ -185,7 +236,13 @@ public class Helpers
 		return totalFare;
 	}
 	
-	/* Test double data type validation */
+	/**
+	 * Method to test double data type validation
+	 * @param string
+	 * @return true - boolean
+	 * In case of a number format exception, 
+	 * function returns false
+	 */
 	public static boolean isDouble(String string) {
 		try {
 			double d = Double.parseDouble(string);
@@ -196,7 +253,13 @@ public class Helpers
 		return true;
 	}
 	
-	/* Test double number validation */
+	/**
+	 * Method to test double number validation 
+	 * @param string
+	 * @return true - boolean
+	 * In case of a number format exception, 
+	 * function returns false
+	 */
 	public static boolean isInteger(String string) {
 		try {
 			double d = Integer.parseInt(string);
@@ -207,7 +270,12 @@ public class Helpers
 		return true;
 	}
 	
-	/* Test taxi registration number format validation */
+	/**
+	 * Method to test taxi registration number format validation 
+	 * @param registrationNumber
+	 * @return true - if number format is valid 
+	 * else return false
+	 */
 	public static boolean isRegistrationNumberValid(String registrationNumber) {
 		String[] reg = registrationNumber.split("-");
 		if(reg.length == 3) {
@@ -222,7 +290,12 @@ public class Helpers
 		return false;
 	}
 	
-	/* Store country continent codes in a hash table  */
+	/**
+	 * Method to store Canton Codes in hash table
+	 * HashSet called codes is defined 
+	 * And Canton codes are added to it
+	 * @return codes
+	 */
 	public static HashSet<String> getCodes() {
 		HashSet<String> codes = new HashSet<String>();
 		codes.add("AG");

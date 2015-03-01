@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class defines Journey Class
+ */
 package dataClasses;
 
 import applicationLogic.Helpers;
@@ -9,6 +14,13 @@ public class Journey implements Comparable<Journey> {
 	private int numberOfPassengers;
 	private double cost;
 	
+	/**
+	 * Create a Journey Object with values specified in the parameter
+	 * @param year 					Year
+	 * @param destination			Destination
+	 * @param taxi					Taxi
+	 * @param numberOfPassengers	Number of Passengers
+	 */
 	public Journey(int year, Destination destination, Taxi taxi, int numberOfPassengers) 
 	{
 		super();
@@ -27,6 +39,10 @@ public class Journey implements Comparable<Journey> {
 		}
 	}
 
+	/*------------------------------------------------------------------------------------------------------------------------------
+	 * 			 								GETTER AND SETTER METHODS FOR JOURNEY CLASS
+	 * -----------------------------------------------------------------------------------------------------------------------------
+	 */
 	public int getYear() {
 		return year;
 	}
@@ -61,8 +77,26 @@ public class Journey implements Comparable<Journey> {
 	
 	public double getCost() {
 		return cost;
+	}	
+	/*------------------------------------------------------------------------------------------------------------------------------
+	 * 			 								END OF GETTER AND SETTER METHODS FOR JOURNEY CLASS
+	 * -----------------------------------------------------------------------------------------------------------------------------
+	 */
+	
+	@Override
+	public int compareTo(Journey other) {
+		if(destination.getDistance() > other.destination.getDistance()) {
+			return 1;
+		} else if(destination.getDistance() < other.destination.getDistance()) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
-
+	
+	/**
+	 * Method to format output 
+	 */
 	@Override
 	public String toString() 
 	{
@@ -83,16 +117,5 @@ public class Journey implements Comparable<Journey> {
 			throw ex;
 		}
 		return s;
-	}
-
-	@Override
-	public int compareTo(Journey other) {
-		if(destination.getDistance() > other.destination.getDistance()) {
-			return 1;
-		} else if(destination.getDistance() < other.destination.getDistance()) {
-			return -1;
-		} else {
-			return 0;
-		}
 	}
 }

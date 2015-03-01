@@ -1,3 +1,8 @@
+/**
+ * Advanced Software Engineering - Stage 1 of Taxi Service Application 
+ * @author Sreesha Damodaran, Vidhya Krishna, Zulqarnain Mehdi
+ * This class describe methods for Journey File Operations
+ */
 package applicationLogic;
 
 import java.io.FileNotFoundException;
@@ -23,6 +28,13 @@ public class JourneyFileOps extends FileOps
 	private String lineCopy;
 	private int lineNumber = 0;
 	
+	/**
+	 * Constructor method for JourneyFileOps
+	 * @param fileName
+	 * @throws FileNotFoundException
+	 * @throws IllegalStateException
+	 * @throws Exception
+	 */
 	public JourneyFileOps(String fileName) throws FileNotFoundException, IllegalStateException,  Exception 
 	{
 		super(fileName);
@@ -45,6 +57,13 @@ public class JourneyFileOps extends FileOps
 		}
 	}
 	
+	/**
+	 * Method to get list of journeys for 2014 and 2015
+	 * @throws FileNotFoundException
+	 * @throws IllegalStateException
+	 * @throws IndexOutOfBoundsException
+	 * @throws Exception
+	 */
 	public void getJourneys() throws FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception
 	{
 		try {
@@ -75,7 +94,10 @@ public class JourneyFileOps extends FileOps
 		return new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME).getDestinations();
 	}
 
-	/*Display 2015 Journeys*/
+	/**
+	 * Display 2015 Journeys
+	 * In case of error during execution, error message is printed
+	 */
 	private List<Journey> get2015Journeys(List<String> lines) throws Exception
 	{
 			while(lineNumber < lines.size()) {
@@ -128,7 +150,10 @@ public class JourneyFileOps extends FileOps
 		return journeys;
 	}
 
-	/*Display 2014 Journeys*/
+	/**
+	 * Display 2014 Journeys
+	 * In case of error during execution, print error message
+	 */
 	private List<Journey> get2014Journeys(List<String> lines) throws Exception
 	{
 		while(lineNumber < lines.size()) {
@@ -164,7 +189,12 @@ public class JourneyFileOps extends FileOps
 		return journeys;
 	}
 
-	/*Display driver details*/
+	/**
+	 * Display driver names if regNumber is equal 
+	 * To Registration number of taxi
+	 * @param regNumber
+	 * @return name 
+	 */
 	private String getDriverName(String regNumber) 
 	{
 		String name = "NOT FOUND";
@@ -180,7 +210,12 @@ public class JourneyFileOps extends FileOps
 		return name;
 	}
 
-	/*Display distance*/
+	/**
+	 * Display distance corresponding to the driver name
+	 * If not found, display -1
+	 * @param name
+	 * @return distance
+	 */
 	private double getDistance(String name) 
 	{
 		double distance = -1;
@@ -196,7 +231,11 @@ public class JourneyFileOps extends FileOps
 		return distance;
 	}
 
-	/*Return unique records of drivers' names, and the unique destinations they have visited*/
+	/**
+	 * Method to return unique records of drivers' names, 
+	 * And the unique destinations they have visited 
+	 * @return TreeSet<Taxis>
+	 */
 	public TreeSet<Taxi> getDriversAndVisitedPlaces() 
 	{
 		TreeSet<Taxi> taxis = getUniqueTaxiSet();
@@ -214,7 +253,10 @@ public class JourneyFileOps extends FileOps
 		return taxis;
 	}
 
-	/*Display unique set of taxis*/
+	/**
+	 * Display unique set of Taxis
+	 * @return TreeSet<Taxi>
+	 */
 	private TreeSet<Taxi> getUniqueTaxiSet() 
 	{
 		TreeSet<Taxi> taxis = new TreeSet<Taxi>();
@@ -227,7 +269,11 @@ public class JourneyFileOps extends FileOps
 		return taxis;
 	}
 
-	/*Return unique and common destinations*/
+	/**
+	 * Method to return unique and common destinations
+	 * @param journeys1
+	 * @param journeys2
+	 */
 	public static void writeUniqueAndCommonDestinations(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
 	{
 		try {
@@ -248,7 +294,9 @@ public class JourneyFileOps extends FileOps
 		}
 	}
 
-	/*Display unique  and common Destinations*/
+	/**
+	 * Display unique  and common Destinations - table format
+	 */
 	private static String getUniqueAndCommonDestinations(
 			TreeSet<Journey> uniqueJourneys1, int uniqueJourney1Count,
 			TreeSet<Journey> uniqueJourneys2, int uniqueJourney2Count,
@@ -285,7 +333,10 @@ public class JourneyFileOps extends FileOps
 		return s;
 	}
 
-	/*Return unique set of journeys*/
+	/**
+	 * Method to return unique set of journeys
+	 * @return TreeSet<Journey>
+	 */
 	public TreeSet<Journey> getUniqueJourneySet() 
 	{
 		TreeSet<Journey> journeys = new TreeSet<Journey>();
@@ -298,7 +349,12 @@ public class JourneyFileOps extends FileOps
 		return journeys;
 	}
 
-	/*Display unique Journeys*/
+	/**
+	 * Display unique Journeys of only 2015
+	 * @param journeys1
+	 * @param journeys2
+	 * @return
+	 */
 	private static TreeSet<Journey> getUniqueJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
 	
 	{
@@ -313,7 +369,12 @@ public class JourneyFileOps extends FileOps
 		return journeys1Only;
 	}
 
-	/*Display common Journeys*/
+	/**
+	 * Display common Journeys of both 2014 and 2015
+	 * @param journeys1
+	 * @param journeys2
+	 * @return
+	 */
 	private static TreeSet<Journey> getCommonJourneys(TreeSet<Journey> journeys1, TreeSet<Journey> journeys2) 
 	{
 		TreeSet<Journey> commonJourneys = journeys1;
@@ -322,7 +383,12 @@ public class JourneyFileOps extends FileOps
 		return commonJourneys;
 	}
 
-	/*Return first 5 journeys*/
+	/**
+	 * Return first 5 journeys
+	 * @param journeys
+	 * @param title
+	 * @return
+	 */
 	public static String getFirstFiveJourneys(List<Journey> journeys, String title) 
 	{
 		String s = "";
@@ -339,7 +405,10 @@ public class JourneyFileOps extends FileOps
 		return s;
 	}
 
-	/*Return most expensive journeys*/
+	/**
+	 * Method to return most expensive journeys
+	 * @return
+	 */
 	public List<Journey> getMostExpensiveJourneys()
 	{
 		List<Journey> journeys = this.journeys;
@@ -364,8 +433,11 @@ public class JourneyFileOps extends FileOps
 		
 		return journeys;
 	}
-	
-	/*Return least expensive journeys*/
+
+	/**
+	 * Method to return least expensive journeys
+	 * @return
+	 */
 	public List<Journey> getLeastExpensiveJourneys() 
 	{
 		List<Journey> journeys = this.journeys;
@@ -389,8 +461,13 @@ public class JourneyFileOps extends FileOps
 		
 		return journeys;
 	}
-	
-	/*Return top  5 and cheapest 5 journeys*/
+
+	/**
+	 * Method to return top five most and least expensive journeys
+	 * @param top5Journeys
+	 * @param cheapest5Journeys
+	 * In case of error during exception, error message is printed
+	 */
 	public static void writeTopFiveAndCheapestJourneysToFile(String top5Journeys, String cheapest5Journeys) 
 	{
 		try
