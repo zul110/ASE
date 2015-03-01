@@ -57,13 +57,6 @@ public class JourneyFileOps extends FileOps
 		}
 	}
 	
-	/**
-	 * Method to get list of journeys for 2014 and 2015
-	 * @throws FileNotFoundException
-	 * @throws IllegalStateException
-	 * @throws IndexOutOfBoundsException
-	 * @throws Exception
-	 */
 	public void getJourneys() throws FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception
 	{
 		try {
@@ -83,21 +76,16 @@ public class JourneyFileOps extends FileOps
 			throw ex;
 		}
 	}
-	
 	private List<Taxi> getTaxis() throws Exception 
 	{
 		return new TaxiFileOps(Helpers.TAXIS_FILE_NAME).getTaxis();
 	}
-
+	
 	private List<Destination> getDestinations() throws Exception 
 	{
 		return new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME).getDestinations();
 	}
 
-	/**
-	 * Display 2015 Journeys
-	 * In case of error during execution, error message is printed
-	 */
 	private List<Journey> get2015Journeys(List<String> lines) throws Exception
 	{
 			while(lineNumber < lines.size()) {

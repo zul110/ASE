@@ -19,15 +19,8 @@ public class Destination implements Comparable<Destination> {
 	public Destination(String name, double distance) 
 	{
 		super();
-		try
-		{
 			this.name = name;
 			this.distance = distance;
-		}
-		catch(Exception exc)
-		{
-			Helpers.println(exc.getMessage());
-		}
 	}
 	
 	/*------------------------------------------------------------------------------------------------------------------------------

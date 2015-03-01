@@ -22,17 +22,10 @@ public class Taxi implements Comparable<Taxi> {
 	public Taxi(String driver, String registrationNumber) 
 	{
 		super();
-		try
-		{
 			this.driver = driver;
 			this.registrationNumber = registrationNumber;
 		
 			destinations = new TreeSet<Destination>();
-		}
-		catch(Exception exc)
-		{
-			Helpers.println(exc.getMessage());
-		}
 	}
 	
 	/*------------------------------------------------------------------------------------------------------------------------------
