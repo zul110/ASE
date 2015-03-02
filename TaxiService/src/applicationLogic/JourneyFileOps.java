@@ -30,6 +30,10 @@ public class JourneyFileOps extends FileOps
 	
 	/**
 	 * Constructor method for JourneyFileOps
+	 * Sets the year, according to the file name
+	 * Initializes Journeys ArrayList
+	 * Gets the list of Destinations
+	 * Gets the List of Journeys according to the year
 	 * @param fileName
 	 * @throws FileNotFoundException
 	 * @throws IllegalStateException
@@ -57,6 +61,13 @@ public class JourneyFileOps extends FileOps
 		}
 	}
 	
+	/**
+	 * Gets the list of Journeys according to the year
+	 * @throws FileNotFoundException
+	 * @throws IllegalStateException
+	 * @throws IndexOutOfBoundsException
+	 * @throws Exception
+	 */
 	public void getJourneys() throws FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception
 	{
 		try {
@@ -76,17 +87,38 @@ public class JourneyFileOps extends FileOps
 			throw ex;
 		}
 	}
+	
+	/**
+	 * Gets a list of Taxis
+	 * @return List<Taxi>
+	 * @throws Exception
+	 */
 	private List<Taxi> getTaxis() throws Exception 
 	{
 		return new TaxiFileOps(Helpers.TAXIS_FILE_NAME).getTaxis();
 	}
 	
+	/**
+	 * Gets a list of Destinations
+	 * @return List<Destination>
+	 * @throws Exception
+	 */
 	private List<Destination> getDestinations() throws Exception 
 	{
 		return new DestinationFileOps(Helpers.DESTINATIONS_FILE_NAME).getDestinations();
 	}
 
-	private List<Journey> get2015Journeys(List<String> lines) throws Exception
+	/**
+	 * Gets the list of Journeys in 2015
+	 * Conducts various validation checks
+	 * @param lines
+	 * @return List<Journey>
+	 * @throws InvalidFormatException
+	 * @throws InvalidFormatException
+	 * @throws NumberFormatException
+	 * @throws Exception
+	 */
+	private List<Journey> get2015Journeys(List<String> lines) throws InvalidFormatException, InvalidFormatException, NumberFormatException, Exception
 	{
 			while(lineNumber < lines.size()) {
 				String line = lines.get(lineNumber);
@@ -139,10 +171,16 @@ public class JourneyFileOps extends FileOps
 	}
 
 	/**
-	 * Display 2014 Journeys
-	 * In case of error during execution, print error message
+	 * Gets the list of Journeys in 2014
+	 * Conducts various validation checks
+	 * @param lines
+	 * @return List<Journey>
+	 * @throws InvalidFormatException
+	 * @throws InvalidFormatException
+	 * @throws NumberFormatException
+	 * @throws Exception
 	 */
-	private List<Journey> get2014Journeys(List<String> lines) throws Exception
+	private List<Journey> get2014Journeys(List<String> lines) throws InvalidFormatException, InvalidFormatException, NumberFormatException, Exception
 	{
 		while(lineNumber < lines.size()) {
 			String line = lines.get(lineNumber);
@@ -454,7 +492,7 @@ public class JourneyFileOps extends FileOps
 	 * Method to return top five most and least expensive journeys
 	 * @param top5Journeys
 	 * @param cheapest5Journeys
-	 * In case of error during exception, error message is printed
+	 * @throws Exception
 	 */
 	public static void writeTopFiveAndCheapestJourneysToFile(String top5Journeys, String cheapest5Journeys) 
 	{
@@ -469,10 +507,6 @@ public class JourneyFileOps extends FileOps
 		catch(Exception exc)
 		{
 			Helpers.println(exc.getMessage());
-		}
-		catch(Throwable e) 
-		{ 
-			Helpers.println(e.getMessage());
 		}
 	}
 }

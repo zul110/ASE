@@ -6,6 +6,12 @@
  */
 package customExceptions;
 
+/**
+ * Custom Exception: InvalidFormatException
+ * Thrown when data is encountered in an invalid format 
+ * @author Zulqarnain
+ *
+ */
 public class InvalidFormatException extends Exception {
 	public InvalidFormatException(String message) {
         super(message);

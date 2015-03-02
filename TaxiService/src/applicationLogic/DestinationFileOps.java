@@ -5,50 +5,90 @@
  */
 package applicationLogic;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import customExceptions.InvalidFormatException;
+
 import dataClasses.Destination;
+import dataClasses.Taxi;
 
 public class DestinationFileOps extends FileOps 
 {
 	private List<Destination> destinations;
+	private List<String> lines;
+	
+	private String lineCopy;
+	private int lineNumber = 0;
 	
 	/**
 	 * Constructor method of DestinationFileOps Class
 	 * @param fileName
 	 */
-	public DestinationFileOps(String fileName) 
+	public DestinationFileOps(String fileName) throws FileNotFoundException, IOException, IllegalStateException, Exception
 	{
 		super(fileName);
 		
 		destinations = new ArrayList<Destination>();
+		
+		try {
+			lines = readLinesFromFile();
+		} catch(FileNotFoundException fileEx) {
+			throw fileEx;
+		} catch(IOException ioEx) {
+			throw ioEx;
+		} catch(Exception ex) {
+			throw ex;
+		}
 	}
-	
+
 	/**
-	 * Method to store destinations from the input text file 
-	 * Into List 
-	 * In case of error during execution, print the error message
-	 * @return
+	 * Deserializes" a List of Destinations from the List of lines read from the file
+	 * @return List<Destination>
+	 * @throws InvalidFormatException
+	 * @throws FileNotFoundException
+	 * @throws IllegalStateException
+	 * @throws IndexOutOfBoundsException
+	 * @throws Exception
 	 */
-	public List<Destination> getDestinations() 
-	{
-		try
-		{	
-		List<String> lines = readLinesFromFile();
-		for(String line : lines) {
-			String[] words = line.split(";");
-			Destination destination = new Destination(words[0], Double.parseDouble(words[1]));
+	public List<Destination> getDestinations() throws InvalidFormatException, FileNotFoundException, IllegalStateException, IndexOutOfBoundsException, Exception {
+		while(lineNumber < lines.size()) {
+			String line = lines.get(lineNumber);
+			lineCopy = line;
+			lineNumber++;
 			
-			destinations.add(destination);
-		}
-		}
-		//Exception -message 
-		catch(Exception exc)
-		{
-			Helpers.println(exc.getMessage());
+			String destinationName = "";
+			String distance = "";
+			
+			if(line.length() > 0) {
+				String[] words = line.split(";");
+				try {
+					destinationName = words[0];
+					distance = words[1];
+					
+					if(destinationName.isEmpty() || distance.isEmpty()) {
+						throw new InvalidFormatException(Helpers.DESTINATIONS_FILE_NAME + ": Invalid file format.\nLine number: " + lineNumber + " (" + lineCopy + ")\nPossible cause: missing data.\n");
+					}
+					
+					if(!Helpers.isDouble(distance)) {
+						throw new InvalidFormatException(Helpers.DESTINATIONS_FILE_NAME + ": Invalid registration number.\nLine number: " + lineNumber + " (" + lineCopy + ")\nPossible cause: distance is not a (double) number");
+					}
+					
+					Destination destination = new Destination(destinationName, Double.parseDouble(distance));
+					
+					destinations.add(destination);
+				} catch(IndexOutOfBoundsException indexEx) {
+					Helpers.println(Helpers.DESTINATIONS_FILE_NAME + ": Index out of bounds.\nLine number: " + lineNumber + " (" + lineCopy + ")\nPossible cause: missing data.\n");
+				} catch(InvalidFormatException invalidEx) {
+					Helpers.println(invalidEx.getMessage());
+				} catch(Exception ex) {
+					throw new Exception("Unknown error while reading " + Helpers.DESTINATIONS_FILE_NAME + ".\nMore info: " + ex.getMessage() + "\n");
+				}
+			}
 		}
 		
 		sortDestinationsDesc();

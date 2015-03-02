@@ -24,6 +24,10 @@ public class FileOps {
 	private String fileName = "";
 	protected List<String> lines;
 	
+	/**
+	 * Constructor for all file operations
+	 * @param fileName
+	 */
 	public FileOps(String fileName) 
 	{
 		this.fileName = fileName;
@@ -32,7 +36,13 @@ public class FileOps {
 	
 	/**
 	 * Read data from file
-	 * In case of any errors during, the error message is printed 
+	 * In case of any errors during, the error message is thrown
+	 * 
+	 * @return A List of Strings containing lines read from the input file
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws IllegalStateException
+	 * @throws Exception
 	 */
 	public List<String> readLinesFromFile() throws FileNotFoundException, IOException, IllegalStateException, Exception 
 	{
@@ -57,7 +67,9 @@ public class FileOps {
 	
 	/**
 	 * Write data to a text file
-	 * In case of error during execution, error message is printed
+	 * @param fileName
+	 * @param textToWrite
+	 * @throws Exception
 	 */
 	public static void writeToFile(String fileName, String textToWrite) throws Exception 
 	{
@@ -86,8 +98,10 @@ public class FileOps {
 	}
 	
 	/**
-	 * Return path of the file
-	 * If the file is not dound, FileNotFound exception is thrown
+	 * Return path of the file 
+	 * @param fileName
+	 * @return
+	 * @throws FileNotFoundException
 	 */
 	public String getPath(String fileName) throws FileNotFoundException {
 		URL url = Main.class.getClassLoader().getResource(fileName);

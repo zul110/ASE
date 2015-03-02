@@ -25,6 +25,9 @@ public class TaxiFileOps extends FileOps
 	
 	/**
 	 * Constructor for TaxiFileOps
+	 * Accepts the name of the file to read as a parameter
+	 * Initializes the ArrayList of Taxis
+	 * Reads lines from the file
 	 * @param fileName
 	 * @throws FileNotFoundException
 	 * @throws IOException
@@ -49,7 +52,7 @@ public class TaxiFileOps extends FileOps
 	}
 	
 	/**
-	 * Return taxis
+	 * "Deserializes" a List of Taxis from the List of lines read from the file
 	 * @return List<Taxi>
 	 * @throws InvalidFormatException
 	 * @throws FileNotFoundException
